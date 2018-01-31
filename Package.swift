@@ -14,11 +14,13 @@ let package = Package(
 		)
 	],
 	dependencies: [
+		.package(url: "git@github.com:happn-app/KVObserver.git", from: "0.9.0"),
+		.package(url: "git@github.com:happn-app/AsyncOperationResult.git", from: "1.0.0")
 	],
 	targets: [
 		.target(
 			name: "CollectionLoader",
-			dependencies: []
+			dependencies: ["AsyncOperationResult", "KVObserver"]
 		),
 		.testTarget(
 			name: "CollectionLoaderTests",
