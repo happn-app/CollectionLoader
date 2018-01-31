@@ -1,0 +1,6 @@
+[submodule "Carthage/Checkouts/KVObserver"]
+	path = Carthage/Checkouts/KVObserver
+	url = ssh://git@github.com/happn-app/KVObserver.git
+[submodule "Carthage/Checkouts/AsyncOperationResult"]
+	path = Carthage/Checkouts/AsyncOperationResult
+	url = ssh://git@github.com/happn-app/AsyncOperationResult.git
