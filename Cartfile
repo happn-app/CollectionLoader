@@ -1,2 +1,2 @@
-github "happn-app/KVObserver" "0.9.0"
+github "happn-app/KVObserver" ~> 0.9
 github "happn-app/AsyncOperationResult" ~> 1.0
