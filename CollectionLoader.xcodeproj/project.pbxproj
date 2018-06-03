@@ -28,6 +28,8 @@
 		7B7A34D620027B6700348DF4 /* CollectionLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD034200274B9009BE667 /* CollectionLoaderTests.swift */; };
 		7B8BD02320026E8C009BE667 /* CollectionLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8BD01A20026E8C009BE667 /* CollectionLoader.framework */; };
 		7B8BD036200274B9009BE667 /* CollectionLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD034200274B9009BE667 /* CollectionLoaderTests.swift */; };
+		7BB2932720C66B2F00119BD2 /* KVObserver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB9650720220B9900024DE1 /* KVObserver.framework */; };
+		7BB2932820C66B3600119BD2 /* AsyncOperationResult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB964EE20220B9300024DE1 /* AsyncOperationResult.framework */; };
 		7BB964D420220A8300024DE1 /* CollectionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB964D220220A8300024DE1 /* CollectionLoader.swift */; };
 		7BB964D520220A8300024DE1 /* CollectionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB964D220220A8300024DE1 /* CollectionLoader.swift */; };
 		7BB964D620220A8300024DE1 /* CollectionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB964D220220A8300024DE1 /* CollectionLoader.swift */; };
@@ -209,20 +211,6 @@
 			remoteGlobalIDString = 7B7A34BE20027B4600348DF4;
 			remoteInfo = "KVObserver-tvOS";
 		};
-		7BB9651820220BB400024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7BC696D42002775C007BC3E9;
-			remoteInfo = "AsyncOperationResult-iOS";
-		};
-		7BB9651A20220BB400024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7BC696D42002775C007BC3E9;
-			remoteInfo = "KVObserver-iOS";
-		};
 		7BB9651C20220BBC00024DE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
@@ -310,6 +298,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB2932720C66B2F00119BD2 /* KVObserver.framework in Frameworks */,
+				7BB2932820C66B3600119BD2 /* AsyncOperationResult.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +326,7 @@
 				7BB964DD20220B7F00024DE1 /* Dependencies */,
 				7B8BD01B20026E8C009BE667 /* Xcode Supporting Files */,
 				7B661F9C20026ACC00486182 /* Products */,
+				7BB2932620C66B2F00119BD2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -394,6 +385,13 @@
 				7B8BD034200274B9009BE667 /* CollectionLoaderTests.swift */,
 			);
 			path = CollectionLoaderTests;
+			sourceTree = "<group>";
+		};
+		7BB2932620C66B2F00119BD2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7BB964DD20220B7F00024DE1 /* Dependencies */ = {
@@ -576,8 +574,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7BB9651920220BB400024DE1 /* PBXTargetDependency */,
-				7BB9651B20220BB400024DE1 /* PBXTargetDependency */,
 			);
 			name = "CollectionLoader-iOS";
 			productName = "happnLogger-iOS";
@@ -946,16 +942,6 @@
 			isa = PBXTargetDependency;
 			name = "KVObserver-tvOS";
 			targetProxy = 7BB9651620220BAE00024DE1 /* PBXContainerItemProxy */;
-		};
-		7BB9651920220BB400024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "AsyncOperationResult-iOS";
-			targetProxy = 7BB9651820220BB400024DE1 /* PBXContainerItemProxy */;
-		};
-		7BB9651B20220BB400024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KVObserver-iOS";
-			targetProxy = 7BB9651A20220BB400024DE1 /* PBXContainerItemProxy */;
 		};
 		7BB9651D20220BBC00024DE1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

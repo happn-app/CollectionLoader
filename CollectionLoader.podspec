@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
 	spec.name = "CollectionLoader"
-	spec.version = "0.9.1"
+	spec.version = "0.9.2"
 	spec.summary = "Loading collections of objects by page, coming from arbitrary data sources"
 	spec.homepage = "https://www.happn.com/"
 	spec.license = {type: 'TBD', file: 'License.txt'}
