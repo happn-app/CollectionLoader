@@ -12,6 +12,7 @@ the `xcodeproj` has been updated.
 | --- | --- | --- | --- |
 | 0.9.0 | 4.0 | 4.1 | Xcode 9.2 |
 | 0.9.1 | 4.0 | 4.1 | Xcode 9.3 |
+| 0.9.2 | 4.0 | 4.1 | Xcode 9.3 |
 
 ## For Maintainers
 ```
