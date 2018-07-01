@@ -24,10 +24,24 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		7B26FB2A20E906480016187C /* AsyncOperationResult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB0E20E906060016187C /* AsyncOperationResult.framework */; };
+		7B26FB2B20E906520016187C /* KVObserver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB1020E906060016187C /* KVObserver.framework */; };
+		7B26FB2C20E906580016187C /* AsyncOperationResult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB1420E906060016187C /* AsyncOperationResult.framework */; };
+		7B26FB2D20E9065B0016187C /* KVObserver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB1720E906060016187C /* KVObserver.framework */; };
+		7B26FB2E20E906610016187C /* AsyncOperationResult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB1D20E906060016187C /* AsyncOperationResult.framework */; };
+		7B26FB2F20E906650016187C /* KVObserver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB2020E906060016187C /* KVObserver.framework */; };
+		7B26FB3020E906740016187C /* AsyncOperationResult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB2420E906060016187C /* AsyncOperationResult.framework */; };
+		7B26FB3120E906750016187C /* KVObserver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB2720E906060016187C /* KVObserver.framework */; };
 		7B7A34C820027B4700348DF4 /* CollectionLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7A34BF20027B4600348DF4 /* CollectionLoader.framework */; };
 		7B7A34D620027B6700348DF4 /* CollectionLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD034200274B9009BE667 /* CollectionLoaderTests.swift */; };
 		7B8BD02320026E8C009BE667 /* CollectionLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8BD01A20026E8C009BE667 /* CollectionLoader.framework */; };
 		7B8BD036200274B9009BE667 /* CollectionLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD034200274B9009BE667 /* CollectionLoaderTests.swift */; };
+		7B9BEB6620E90ABA006B1A89 /* AsyncOperationResult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB0E20E906060016187C /* AsyncOperationResult.framework */; };
+		7B9BEB6720E90ABD006B1A89 /* KVObserver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB1020E906060016187C /* KVObserver.framework */; };
+		7B9BEB6820E90AC4006B1A89 /* AsyncOperationResult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB1D20E906060016187C /* AsyncOperationResult.framework */; };
+		7B9BEB6920E90AC9006B1A89 /* KVObserver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB2020E906060016187C /* KVObserver.framework */; };
+		7B9BEB6C20E90AF6006B1A89 /* AsyncOperationResult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB1420E906060016187C /* AsyncOperationResult.framework */; };
+		7B9BEB6D20E90AF9006B1A89 /* KVObserver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26FB1720E906060016187C /* KVObserver.framework */; };
 		7BB964D420220A8300024DE1 /* CollectionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB964D220220A8300024DE1 /* CollectionLoader.swift */; };
 		7BB964D520220A8300024DE1 /* CollectionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB964D220220A8300024DE1 /* CollectionLoader.swift */; };
 		7BB964D620220A8300024DE1 /* CollectionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB964D220220A8300024DE1 /* CollectionLoader.swift */; };
@@ -83,160 +97,6 @@
 			remoteGlobalIDString = 7B8BD01920026E8C009BE667;
 			remoteInfo = "happnLogger-macOS";
 		};
-		7BB964E920220B9300024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B8BD01A20026E8C009BE667;
-			remoteInfo = "AsyncOperationResult-macOS";
-		};
-		7BB964EB20220B9300024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B7A34BF20027B4600348DF4;
-			remoteInfo = "AsyncOperationResult-tvOS";
-		};
-		7BB964ED20220B9300024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7BC696D52002775C007BC3E9;
-			remoteInfo = "AsyncOperationResult-iOS";
-		};
-		7BB964EF20220B9300024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7BB52E43200279EA007CAD7B;
-			remoteInfo = "AsyncOperationResult-watchOS";
-		};
-		7BB964F120220B9300024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B8BD02220026E8C009BE667;
-			remoteInfo = "AsyncOperationResult-macOSTests";
-		};
-		7BB964F320220B9300024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7BC696DD2002775C007BC3E9;
-			remoteInfo = "AsyncOperationResult-iOSTests";
-		};
-		7BB964F520220B9300024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B7A34C720027B4700348DF4;
-			remoteInfo = "AsyncOperationResult-tvOSTests";
-		};
-		7BB9650220220B9900024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B8BD01A20026E8C009BE667;
-			remoteInfo = "KVObserver-macOS";
-		};
-		7BB9650420220B9900024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B7A34BF20027B4600348DF4;
-			remoteInfo = "KVObserver-tvOS";
-		};
-		7BB9650620220B9900024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7BC696D52002775C007BC3E9;
-			remoteInfo = "KVObserver-iOS";
-		};
-		7BB9650820220B9900024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7BB52E43200279EA007CAD7B;
-			remoteInfo = "KVObserver-watchOS";
-		};
-		7BB9650A20220B9900024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B8BD02220026E8C009BE667;
-			remoteInfo = "KVObserver-macOSTests";
-		};
-		7BB9650C20220B9900024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7BC696DD2002775C007BC3E9;
-			remoteInfo = "KVObserver-iOSTests";
-		};
-		7BB9650E20220B9900024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B7A34C720027B4700348DF4;
-			remoteInfo = "KVObserver-tvOSTests";
-		};
-		7BB9651020220BA700024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7B8BD01920026E8C009BE667;
-			remoteInfo = "AsyncOperationResult-macOS";
-		};
-		7BB9651220220BA700024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7B8BD01920026E8C009BE667;
-			remoteInfo = "KVObserver-macOS";
-		};
-		7BB9651420220BAE00024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7B7A34BE20027B4600348DF4;
-			remoteInfo = "AsyncOperationResult-tvOS";
-		};
-		7BB9651620220BAE00024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7B7A34BE20027B4600348DF4;
-			remoteInfo = "KVObserver-tvOS";
-		};
-		7BB9651820220BB400024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7BC696D42002775C007BC3E9;
-			remoteInfo = "AsyncOperationResult-iOS";
-		};
-		7BB9651A20220BB400024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7BC696D42002775C007BC3E9;
-			remoteInfo = "KVObserver-iOS";
-		};
-		7BB9651C20220BBC00024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7BB52E42200279EA007CAD7B;
-			remoteInfo = "AsyncOperationResult-watchOS";
-		};
-		7BB9651E20220BBC00024DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7BB52E42200279EA007CAD7B;
-			remoteInfo = "KVObserver-watchOS";
-		};
 		7BC696DF2002775C007BC3E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7B661F9320026ACC00486182 /* Project object */;
@@ -251,6 +111,15 @@
 		7B21BACE2003B2C600DFF758 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		7B21BAD02003BBC700DFF758 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		7B21BAD12003BF0600DFF758 /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		7B26FB0C20E904770016187C /* StaticCarthageBuild.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = StaticCarthageBuild.xcconfig; sourceTree = "<group>"; };
+		7B26FB0E20E906060016187C /* AsyncOperationResult.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AsyncOperationResult.framework; sourceTree = "<group>"; };
+		7B26FB1020E906060016187C /* KVObserver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KVObserver.framework; sourceTree = "<group>"; };
+		7B26FB1420E906060016187C /* AsyncOperationResult.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AsyncOperationResult.framework; sourceTree = "<group>"; };
+		7B26FB1720E906060016187C /* KVObserver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KVObserver.framework; sourceTree = "<group>"; };
+		7B26FB1D20E906060016187C /* AsyncOperationResult.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AsyncOperationResult.framework; sourceTree = "<group>"; };
+		7B26FB2020E906060016187C /* KVObserver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KVObserver.framework; sourceTree = "<group>"; };
+		7B26FB2420E906060016187C /* AsyncOperationResult.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AsyncOperationResult.framework; sourceTree = "<group>"; };
+		7B26FB2720E906060016187C /* KVObserver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KVObserver.framework; sourceTree = "<group>"; };
 		7B7A34BF20027B4600348DF4 /* CollectionLoader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionLoader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B7A34C720027B4700348DF4 /* CollectionLoader-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CollectionLoader-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8BD01A20026E8C009BE667 /* CollectionLoader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionLoader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,8 +131,6 @@
 		7BB52E43200279EA007CAD7B /* CollectionLoader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionLoader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB964D220220A8300024DE1 /* CollectionLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionLoader.swift; sourceTree = "<group>"; };
 		7BB964D320220A8300024DE1 /* CollectionLoaderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionLoaderHelper.swift; sourceTree = "<group>"; };
-		7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AsyncOperationResult.xcodeproj; path = AsyncOperationResult/AsyncOperationResult.xcodeproj; sourceTree = "<group>"; };
-		7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVObserver.xcodeproj; path = KVObserver/KVObserver.xcodeproj; sourceTree = "<group>"; };
 		7BC696D52002775C007BC3E9 /* CollectionLoader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionLoader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BC696DD2002775C007BC3E9 /* CollectionLoader-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CollectionLoader-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -273,6 +140,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B26FB2C20E906580016187C /* AsyncOperationResult.framework in Frameworks */,
+				7B26FB2D20E9065B0016187C /* KVObserver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +149,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B9BEB6C20E90AF6006B1A89 /* AsyncOperationResult.framework in Frameworks */,
 				7B7A34C820027B4700348DF4 /* CollectionLoader.framework in Frameworks */,
+				7B9BEB6D20E90AF9006B1A89 /* KVObserver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +159,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B26FB2A20E906480016187C /* AsyncOperationResult.framework in Frameworks */,
+				7B26FB2B20E906520016187C /* KVObserver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +168,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B9BEB6620E90ABA006B1A89 /* AsyncOperationResult.framework in Frameworks */,
 				7B8BD02320026E8C009BE667 /* CollectionLoader.framework in Frameworks */,
+				7B9BEB6720E90ABD006B1A89 /* KVObserver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +178,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B26FB3020E906740016187C /* AsyncOperationResult.framework in Frameworks */,
+				7B26FB3120E906750016187C /* KVObserver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +187,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B26FB2E20E906610016187C /* AsyncOperationResult.framework in Frameworks */,
+				7B26FB2F20E906650016187C /* KVObserver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,13 +196,59 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B9BEB6820E90AC4006B1A89 /* AsyncOperationResult.framework in Frameworks */,
 				7BC696DE2002775C007BC3E9 /* CollectionLoader.framework in Frameworks */,
+				7B9BEB6920E90AC9006B1A89 /* KVObserver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B26FB0D20E906060016187C /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				7B26FB0E20E906060016187C /* AsyncOperationResult.framework */,
+				7B26FB1020E906060016187C /* KVObserver.framework */,
+			);
+			name = macOS;
+			path = Mac;
+			sourceTree = "<group>";
+		};
+		7B26FB1220E906060016187C /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				7B26FB1420E906060016187C /* AsyncOperationResult.framework */,
+				7B26FB1720E906060016187C /* KVObserver.framework */,
+			);
+			path = tvOS;
+			sourceTree = "<group>";
+		};
+		7B26FB1920E906060016187C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7B26FB1D20E906060016187C /* AsyncOperationResult.framework */,
+				7B26FB2020E906060016187C /* KVObserver.framework */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		7B26FB2220E906060016187C /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				7B26FB2420E906060016187C /* AsyncOperationResult.framework */,
+				7B26FB2720E906060016187C /* KVObserver.framework */,
+			);
+			path = watchOS;
+			sourceTree = "<group>";
+		};
+		7B26FB2920E906480016187C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7B661F9220026ACC00486182 = {
 			isa = PBXGroup;
 			children = (
@@ -333,8 +258,9 @@
 				7B21BACD2003B2C600DFF758 /* CollectionLoader.podspec */,
 				7B8BD01120026AF1009BE667 /* Sources */,
 				7B8BD031200274B9009BE667 /* Tests */,
-				7BB964DD20220B7F00024DE1 /* Dependencies */,
+				7BB964DD20220B7F00024DE1 /* Carthage Builds */,
 				7B8BD01B20026E8C009BE667 /* Xcode Supporting Files */,
+				7B26FB2920E906480016187C /* Frameworks */,
 				7B661F9C20026ACC00486182 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -373,6 +299,7 @@
 		7B8BD01B20026E8C009BE667 /* Xcode Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7B26FB0C20E904770016187C /* StaticCarthageBuild.xcconfig */,
 				7B8BD01D20026E8C009BE667 /* Framework-Info.plist */,
 				7B8BD02920026E8C009BE667 /* Test-Info.plist */,
 			);
@@ -396,42 +323,16 @@
 			path = CollectionLoaderTests;
 			sourceTree = "<group>";
 		};
-		7BB964DD20220B7F00024DE1 /* Dependencies */ = {
+		7BB964DD20220B7F00024DE1 /* Carthage Builds */ = {
 			isa = PBXGroup;
 			children = (
-				7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */,
-				7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */,
+				7B26FB0D20E906060016187C /* macOS */,
+				7B26FB1220E906060016187C /* tvOS */,
+				7B26FB1920E906060016187C /* iOS */,
+				7B26FB2220E906060016187C /* watchOS */,
 			);
-			name = Dependencies;
-			path = Carthage/Checkouts;
-			sourceTree = "<group>";
-		};
-		7BB964DF20220B9300024DE1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7BB964EA20220B9300024DE1 /* AsyncOperationResult.framework */,
-				7BB964EC20220B9300024DE1 /* AsyncOperationResult.framework */,
-				7BB964EE20220B9300024DE1 /* AsyncOperationResult.framework */,
-				7BB964F020220B9300024DE1 /* AsyncOperationResult.framework */,
-				7BB964F220220B9300024DE1 /* AsyncOperationResult-macOSTests.xctest */,
-				7BB964F420220B9300024DE1 /* AsyncOperationResult-iOSTests.xctest */,
-				7BB964F620220B9300024DE1 /* AsyncOperationResult-tvOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		7BB964F820220B9900024DE1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7BB9650320220B9900024DE1 /* KVObserver.framework */,
-				7BB9650520220B9900024DE1 /* KVObserver.framework */,
-				7BB9650720220B9900024DE1 /* KVObserver.framework */,
-				7BB9650920220B9900024DE1 /* KVObserver.framework */,
-				7BB9650B20220B9900024DE1 /* KVObserver-macOSTests.xctest */,
-				7BB9650D20220B9900024DE1 /* KVObserver-iOSTests.xctest */,
-				7BB9650F20220B9900024DE1 /* KVObserver-tvOSTests.xctest */,
-			);
-			name = Products;
+			name = "Carthage Builds";
+			path = Carthage/Build;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,8 +381,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7BB9651520220BAE00024DE1 /* PBXTargetDependency */,
-				7BB9651720220BAE00024DE1 /* PBXTargetDependency */,
 			);
 			name = "CollectionLoader-tvOS";
 			productName = "happnLogger-tvOS";
@@ -518,8 +417,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7BB9651120220BA700024DE1 /* PBXTargetDependency */,
-				7BB9651320220BA700024DE1 /* PBXTargetDependency */,
 			);
 			name = "CollectionLoader-macOS";
 			productName = "happnLogger-macOS";
@@ -556,8 +453,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7BB9651D20220BBC00024DE1 /* PBXTargetDependency */,
-				7BB9651F20220BBC00024DE1 /* PBXTargetDependency */,
 			);
 			name = "CollectionLoader-watchOS";
 			productName = "happnLogger-watchOS";
@@ -576,8 +471,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7BB9651920220BB400024DE1 /* PBXTargetDependency */,
-				7BB9651B20220BB400024DE1 /* PBXTargetDependency */,
 			);
 			name = "CollectionLoader-iOS";
 			productName = "happnLogger-iOS";
@@ -656,16 +549,6 @@
 			mainGroup = 7B661F9220026ACC00486182;
 			productRefGroup = 7B661F9C20026ACC00486182 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 7BB964DF20220B9300024DE1 /* Products */;
-					ProjectRef = 7BB964DE20220B9300024DE1 /* AsyncOperationResult.xcodeproj */;
-				},
-				{
-					ProductGroup = 7BB964F820220B9900024DE1 /* Products */;
-					ProjectRef = 7BB964F720220B9900024DE1 /* KVObserver.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				7B639D8D2002CDE70079C664 /* All */,
@@ -674,112 +557,11 @@
 				7BC696D42002775C007BC3E9 /* CollectionLoader-iOS */,
 				7BB52E42200279EA007CAD7B /* CollectionLoader-watchOS */,
 				7B8BD02120026E8C009BE667 /* CollectionLoader-macOSTests */,
-				7BC696DC2002775C007BC3E9 /* CollectionLoader-iOSTests */,
 				7B7A34C620027B4700348DF4 /* CollectionLoader-tvOSTests */,
+				7BC696DC2002775C007BC3E9 /* CollectionLoader-iOSTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		7BB964EA20220B9300024DE1 /* AsyncOperationResult.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AsyncOperationResult.framework;
-			remoteRef = 7BB964E920220B9300024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB964EC20220B9300024DE1 /* AsyncOperationResult.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AsyncOperationResult.framework;
-			remoteRef = 7BB964EB20220B9300024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB964EE20220B9300024DE1 /* AsyncOperationResult.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AsyncOperationResult.framework;
-			remoteRef = 7BB964ED20220B9300024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB964F020220B9300024DE1 /* AsyncOperationResult.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AsyncOperationResult.framework;
-			remoteRef = 7BB964EF20220B9300024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB964F220220B9300024DE1 /* AsyncOperationResult-macOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "AsyncOperationResult-macOSTests.xctest";
-			remoteRef = 7BB964F120220B9300024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB964F420220B9300024DE1 /* AsyncOperationResult-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "AsyncOperationResult-iOSTests.xctest";
-			remoteRef = 7BB964F320220B9300024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB964F620220B9300024DE1 /* AsyncOperationResult-tvOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "AsyncOperationResult-tvOSTests.xctest";
-			remoteRef = 7BB964F520220B9300024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB9650320220B9900024DE1 /* KVObserver.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KVObserver.framework;
-			remoteRef = 7BB9650220220B9900024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB9650520220B9900024DE1 /* KVObserver.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KVObserver.framework;
-			remoteRef = 7BB9650420220B9900024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB9650720220B9900024DE1 /* KVObserver.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KVObserver.framework;
-			remoteRef = 7BB9650620220B9900024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB9650920220B9900024DE1 /* KVObserver.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KVObserver.framework;
-			remoteRef = 7BB9650820220B9900024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB9650B20220B9900024DE1 /* KVObserver-macOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "KVObserver-macOSTests.xctest";
-			remoteRef = 7BB9650A20220B9900024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB9650D20220B9900024DE1 /* KVObserver-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "KVObserver-iOSTests.xctest";
-			remoteRef = 7BB9650C20220B9900024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB9650F20220B9900024DE1 /* KVObserver-tvOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "KVObserver-tvOSTests.xctest";
-			remoteRef = 7BB9650E20220B9900024DE1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7B7A34BD20027B4600348DF4 /* Resources */ = {
@@ -927,46 +709,6 @@
 			target = 7B8BD01920026E8C009BE667 /* CollectionLoader-macOS */;
 			targetProxy = 7B8BD02420026E8C009BE667 /* PBXContainerItemProxy */;
 		};
-		7BB9651120220BA700024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "AsyncOperationResult-macOS";
-			targetProxy = 7BB9651020220BA700024DE1 /* PBXContainerItemProxy */;
-		};
-		7BB9651320220BA700024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KVObserver-macOS";
-			targetProxy = 7BB9651220220BA700024DE1 /* PBXContainerItemProxy */;
-		};
-		7BB9651520220BAE00024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "AsyncOperationResult-tvOS";
-			targetProxy = 7BB9651420220BAE00024DE1 /* PBXContainerItemProxy */;
-		};
-		7BB9651720220BAE00024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KVObserver-tvOS";
-			targetProxy = 7BB9651620220BAE00024DE1 /* PBXContainerItemProxy */;
-		};
-		7BB9651920220BB400024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "AsyncOperationResult-iOS";
-			targetProxy = 7BB9651820220BB400024DE1 /* PBXContainerItemProxy */;
-		};
-		7BB9651B20220BB400024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KVObserver-iOS";
-			targetProxy = 7BB9651A20220BB400024DE1 /* PBXContainerItemProxy */;
-		};
-		7BB9651D20220BBC00024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "AsyncOperationResult-watchOS";
-			targetProxy = 7BB9651C20220BBC00024DE1 /* PBXContainerItemProxy */;
-		};
-		7BB9651F20220BBC00024DE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KVObserver-watchOS";
-			targetProxy = 7BB9651E20220BBC00024DE1 /* PBXContainerItemProxy */;
-		};
 		7BC696E02002775C007BC3E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7BC696D42002775C007BC3E9 /* CollectionLoader-iOS */;
@@ -1113,10 +855,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				INFOPLIST_FILE = "Xcode Supporting Files/Framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-tvOS";
 				PRODUCT_NAME = CollectionLoader;
 				SDKROOT = appletvos;
@@ -1139,10 +884,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				INFOPLIST_FILE = "Xcode Supporting Files/Framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-tvOS";
 				PRODUCT_NAME = CollectionLoader;
 				SDKROOT = appletvos;
@@ -1160,9 +908,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Xcode Supporting Files/Test-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1179,9 +931,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Xcode Supporting Files/Test-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1202,11 +958,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Xcode Supporting Files/Framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-macOS";
 				PRODUCT_NAME = CollectionLoader;
 				SDKROOT = macosx;
@@ -1230,11 +989,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Xcode Supporting Files/Framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-macOS";
 				PRODUCT_NAME = CollectionLoader;
 				SDKROOT = macosx;
@@ -1253,8 +1015,12 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "Xcode Supporting Files/Test-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1271,8 +1037,12 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "Xcode Supporting Files/Test-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1292,6 +1062,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
 				INFOPLIST_FILE = "Xcode Supporting Files/Framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1318,6 +1092,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
 				INFOPLIST_FILE = "Xcode Supporting Files/Framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1342,10 +1120,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Xcode Supporting Files/Framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-iOS";
 				PRODUCT_NAME = CollectionLoader;
 				SDKROOT = iphoneos;
@@ -1368,10 +1149,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Xcode Supporting Files/Framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-iOS";
 				PRODUCT_NAME = CollectionLoader;
 				SDKROOT = iphoneos;
@@ -1389,9 +1173,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Xcode Supporting Files/Test-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1407,9 +1195,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Xcode Supporting Files/Test-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.happn.CollectionLoader-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
