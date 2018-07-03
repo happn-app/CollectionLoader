@@ -21,6 +21,17 @@
 			name = All;
 			productName = All;
 		};
+		7BD1981720EBEC160071C156 /* Workaround Carthage Static Folder */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7BD1981A20EBEC160071C156 /* Build configuration list for PBXAggregateTarget "Workaround Carthage Static Folder" */;
+			buildPhases = (
+				7BD1982320EBEC350071C156 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Workaround Carthage Static Folder";
+			productName = "Workaround Carthage Static Folder";
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -103,6 +114,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7BC696D42002775C007BC3E9;
 			remoteInfo = "happnLogger-iOS";
+		};
+		7BD1981B20EBEC230071C156 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B661F9320026ACC00486182 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BD1981720EBEC160071C156;
+			remoteInfo = "Workaround Carthage Static Folder";
+		};
+		7BD1981D20EBEC260071C156 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B661F9320026ACC00486182 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BD1981720EBEC160071C156;
+			remoteInfo = "Workaround Carthage Static Folder";
+		};
+		7BD1981F20EBEC2A0071C156 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B661F9320026ACC00486182 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BD1981720EBEC160071C156;
+			remoteInfo = "Workaround Carthage Static Folder";
+		};
+		7BD1982120EBEC2D0071C156 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B661F9320026ACC00486182 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BD1981720EBEC160071C156;
+			remoteInfo = "Workaround Carthage Static Folder";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -381,6 +420,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7BD1981E20EBEC260071C156 /* PBXTargetDependency */,
 			);
 			name = "CollectionLoader-tvOS";
 			productName = "happnLogger-tvOS";
@@ -417,6 +457,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7BD1981C20EBEC230071C156 /* PBXTargetDependency */,
 			);
 			name = "CollectionLoader-macOS";
 			productName = "happnLogger-macOS";
@@ -453,6 +494,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7BD1982220EBEC2D0071C156 /* PBXTargetDependency */,
 			);
 			name = "CollectionLoader-watchOS";
 			productName = "happnLogger-watchOS";
@@ -471,6 +513,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7BD1982020EBEC2A0071C156 /* PBXTargetDependency */,
 			);
 			name = "CollectionLoader-iOS";
 			productName = "happnLogger-iOS";
@@ -537,6 +580,10 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
+					7BD1981720EBEC160071C156 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 7B661F9620026ACC00486182 /* Build configuration list for PBXProject "CollectionLoader" */;
@@ -552,6 +599,7 @@
 			projectRoot = "";
 			targets = (
 				7B639D8D2002CDE70079C664 /* All */,
+				7BD1981720EBEC160071C156 /* Workaround Carthage Static Folder */,
 				7B8BD01920026E8C009BE667 /* CollectionLoader-macOS */,
 				7B7A34BE20027B4600348DF4 /* CollectionLoader-tvOS */,
 				7BC696D42002775C007BC3E9 /* CollectionLoader-iOS */,
@@ -614,6 +662,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7BD1982320EBEC350071C156 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "env >~/Desktop/env.txt";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7B7A34BA20027B4600348DF4 /* Sources */ = {
@@ -713,6 +777,26 @@
 			isa = PBXTargetDependency;
 			target = 7BC696D42002775C007BC3E9 /* CollectionLoader-iOS */;
 			targetProxy = 7BC696DF2002775C007BC3E9 /* PBXContainerItemProxy */;
+		};
+		7BD1981C20EBEC230071C156 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BD1981720EBEC160071C156 /* Workaround Carthage Static Folder */;
+			targetProxy = 7BD1981B20EBEC230071C156 /* PBXContainerItemProxy */;
+		};
+		7BD1981E20EBEC260071C156 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BD1981720EBEC160071C156 /* Workaround Carthage Static Folder */;
+			targetProxy = 7BD1981D20EBEC260071C156 /* PBXContainerItemProxy */;
+		};
+		7BD1982020EBEC2A0071C156 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BD1981720EBEC160071C156 /* Workaround Carthage Static Folder */;
+			targetProxy = 7BD1981F20EBEC2A0071C156 /* PBXContainerItemProxy */;
+		};
+		7BD1982220EBEC2D0071C156 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BD1981720EBEC160071C156 /* Workaround Carthage Static Folder */;
+			targetProxy = 7BD1982120EBEC2D0071C156 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1210,6 +1294,22 @@
 			};
 			name = Release;
 		};
+		7BD1981820EBEC160071C156 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7BD1981920EBEC160071C156 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1290,6 +1390,15 @@
 			buildConfigurations = (
 				7BC696EA2002775C007BC3E9 /* Debug */,
 				7BC696EB2002775C007BC3E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7BD1981A20EBEC160071C156 /* Build configuration list for PBXAggregateTarget "Workaround Carthage Static Folder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BD1981820EBEC160071C156 /* Debug */,
+				7BD1981920EBEC160071C156 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
