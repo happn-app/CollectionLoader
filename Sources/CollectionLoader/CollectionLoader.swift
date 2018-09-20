@@ -53,6 +53,10 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	`isLoadingFirstPage` property changes. Always called on the main thread. */
 	public var isLoadingFirstPageChangedHandler: (() -> Void)?
 	
+	/** This handler is called by the collection loader when the
+	loading is done. Always called on the main thread. */
+	public var didFinishPageChangedHandler: ((_ results: CollectionLoaderHelperType.CompletionResultsType) -> Void)?
+	
 	public var canDeleteObjectIdHandler: ((_ objectId: CollectionLoaderHelperType.FetchedObjectsIDType) -> Bool)?
 	
 	/* ********************
@@ -236,6 +240,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 			
 			let endOperationResult = strongSelf.endOperationCheck.flatMap{ strongSelf.helper.results(fromFinishedLoadingOperation: $0.checkedOperation) }
 			if let endOperationCheck = strongSelf.endOperationCheck, let results = endOperationResult?.successValue {
+				strongSelf.didFinishPageChangedHandler?(results)
 				if endOperationCheck.pageLoadDescription.checkPreviousPageInfo {
 					strongSelf.previousPageInfo = strongSelf.helper.previousPageInfo(for: results, from: endOperationCheck.pageLoadDescription.pageInfo, nElementsPerPage: strongSelf.numberOfElementsPerPage)
 				}
