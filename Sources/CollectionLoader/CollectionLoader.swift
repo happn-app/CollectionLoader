@@ -9,6 +9,7 @@
 import Foundation
 
 import KVObserver
+import AsyncOperationResult
 
 
 
@@ -55,7 +56,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	
 	/** This handler is called by the collection loader when the
 	loading is done. Always called on the main thread. */
-	public var didFinishPageChangedHandler: ((_ results: CollectionLoaderHelperType.CompletionResultsType) -> Void)?
+	public var didFinishPageChangedHandler: ((_ results:  AsyncOperationResult<CollectionLoaderHelperType.CompletionResultsType>?) -> Void)?
 	
 	public var canDeleteObjectIdHandler: ((_ objectId: CollectionLoaderHelperType.FetchedObjectsIDType) -> Bool)?
 	
@@ -239,8 +240,10 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 			let haveHadMore = strongSelf.endOperationCheck?.hadMore
 			
 			let endOperationResult = strongSelf.endOperationCheck.flatMap{ strongSelf.helper.results(fromFinishedLoadingOperation: $0.checkedOperation) }
+			
+			strongSelf.didFinishPageChangedHandler?(endOperationResult)
+			
 			if let endOperationCheck = strongSelf.endOperationCheck, let results = endOperationResult?.successValue {
-				strongSelf.didFinishPageChangedHandler?(results)
 				if endOperationCheck.pageLoadDescription.checkPreviousPageInfo {
 					strongSelf.previousPageInfo = strongSelf.helper.previousPageInfo(for: results, from: endOperationCheck.pageLoadDescription.pageInfo, nElementsPerPage: strongSelf.numberOfElementsPerPage)
 				}
