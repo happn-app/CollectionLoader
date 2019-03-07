@@ -1,8 +1,8 @@
 import XCTest
-@testable import CollectionLoaderTests
 
+import CollectionLoaderTests
 
+var tests = [XCTestCaseEntry]()
+tests += CollectionLoaderTests.__allTests()
 
-XCTMain([
-	testCase(CollectionLoaderTests.allTests)
-])
+XCTMain(tests)

@@ -12,10 +12,4 @@ class CollectionLoaderTests: XCTestCase {
 		XCTAssertTrue(true)
 	}
 	
-	
-	/* Fill this array with all the tests to have Linux testing compatibility. */
-	static var allTests = [
-		("testExample", testExample),
-	]
-	
 }
