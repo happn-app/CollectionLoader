@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7BC696D42002775C007BC3E9"
+               BlueprintIdentifier = "7B43A2D62238F20C004C29B6"
                BuildableName = "CollectionLoader.framework"
-               BlueprintName = "CollectionLoader-iOS"
+               BlueprintName = "CollectionLoader-Static"
                ReferencedContainer = "container:CollectionLoader.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7BC696DC2002775C007BC3E9"
-               BuildableName = "CollectionLoader-iOSTests.xctest"
-               BlueprintName = "CollectionLoader-iOSTests"
-               ReferencedContainer = "container:CollectionLoader.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7BC696D42002775C007BC3E9"
-            BuildableName = "CollectionLoader.framework"
-            BlueprintName = "CollectionLoader-iOS"
-            ReferencedContainer = "container:CollectionLoader.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7BC696D42002775C007BC3E9"
+            BlueprintIdentifier = "7B43A2D62238F20C004C29B6"
             BuildableName = "CollectionLoader.framework"
-            BlueprintName = "CollectionLoader-iOS"
+            BlueprintName = "CollectionLoader-Static"
             ReferencedContainer = "container:CollectionLoader.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7BC696D42002775C007BC3E9"
+            BlueprintIdentifier = "7B43A2D62238F20C004C29B6"
             BuildableName = "CollectionLoader.framework"
-            BlueprintName = "CollectionLoader-iOS"
+            BlueprintName = "CollectionLoader-Static"
             ReferencedContainer = "container:CollectionLoader.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

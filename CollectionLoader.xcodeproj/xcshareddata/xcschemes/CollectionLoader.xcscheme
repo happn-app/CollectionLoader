@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7B8BD01920026E8C009BE667"
                BuildableName = "CollectionLoader.framework"
-               BlueprintName = "CollectionLoader-macOS"
+               BlueprintName = "CollectionLoader"
                ReferencedContainer = "container:CollectionLoader.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7B8BD02120026E8C009BE667"
-               BuildableName = "CollectionLoader-macOSTests.xctest"
-               BlueprintName = "CollectionLoader-macOSTests"
+               BuildableName = "CollectionLoader-Tests.xctest"
+               BlueprintName = "CollectionLoader-Tests"
                ReferencedContainer = "container:CollectionLoader.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7B8BD01920026E8C009BE667"
             BuildableName = "CollectionLoader.framework"
-            BlueprintName = "CollectionLoader-macOS"
+            BlueprintName = "CollectionLoader"
             ReferencedContainer = "container:CollectionLoader.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,7 +66,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7B8BD01920026E8C009BE667"
             BuildableName = "CollectionLoader.framework"
-            BlueprintName = "CollectionLoader-macOS"
+            BlueprintName = "CollectionLoader"
             ReferencedContainer = "container:CollectionLoader.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,7 +84,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7B8BD01920026E8C009BE667"
             BuildableName = "CollectionLoader.framework"
-            BlueprintName = "CollectionLoader-macOS"
+            BlueprintName = "CollectionLoader"
             ReferencedContainer = "container:CollectionLoader.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

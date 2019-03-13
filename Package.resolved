@@ -6,8 +6,8 @@
         "repositoryURL": "git@github.com:happn-app/AsyncOperationResult.git",
         "state": {
           "branch": null,
-          "revision": "8d5cd339143bb7fd7da66d5977ce36325ccf51f1",
-          "version": "1.0.3"
+          "revision": "98aaf624ca0a2f4374d9a36a5710d2fd4b978eb3",
+          "version": "1.0.5"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "git@github.com:happn-app/KVObserver.git",
         "state": {
           "branch": null,
-          "revision": "55b0766fb7d7871137ac59cb032a78ce1ab2fb8f",
-          "version": "0.9.3"
+          "revision": "d842931a87b4d7f2187ddd9c7df0ee691a8a3a74",
+          "version": "0.9.4"
         }
       }
     ]

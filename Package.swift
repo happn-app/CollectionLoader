@@ -13,8 +13,8 @@ let package = Package(
 		)
 	],
 	dependencies: [
-		.package(url: "git@github.com:happn-app/KVObserver.git", from: "0.9.0"),
-		.package(url: "git@github.com:happn-app/AsyncOperationResult.git", from: "1.0.0")
+		.package(url: "git@github.com:happn-tech/KVObserver.git", from: "0.9.4"),
+		.package(url: "git@github.com:happn-tech/AsyncOperationResult.git", from: "1.0.5")
 	],
 	targets: [
 		.target(
