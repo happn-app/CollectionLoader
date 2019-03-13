@@ -35,7 +35,6 @@
 		7B21BACE2003B2C600DFF758 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		7B21BAD02003BBC700DFF758 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		7B21BAD12003BF0600DFF758 /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
-		7B26FB0C20E904770016187C /* StaticCarthageBuild.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = StaticCarthageBuild.xcconfig; sourceTree = "<group>"; };
 		7B26FB0E20E906060016187C /* AsyncOperationResult.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AsyncOperationResult.framework; sourceTree = "<group>"; };
 		7B26FB1020E906060016187C /* KVObserver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KVObserver.framework; sourceTree = "<group>"; };
 		7B26FB1420E906060016187C /* AsyncOperationResult.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AsyncOperationResult.framework; sourceTree = "<group>"; };
@@ -184,7 +183,6 @@
 		7B8BD01B20026E8C009BE667 /* Xcode Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7B26FB0C20E904770016187C /* StaticCarthageBuild.xcconfig */,
 				7B8BD01D20026E8C009BE667 /* Framework-Info.plist */,
 				7B8BD02920026E8C009BE667 /* Test-Info.plist */,
 			);
