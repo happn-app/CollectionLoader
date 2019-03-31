@@ -3,19 +3,19 @@
     "pins": [
       {
         "package": "AsyncOperationResult",
-        "repositoryURL": "git@github.com:happn-app/AsyncOperationResult.git",
+        "repositoryURL": "https://github.com/happn-tech/AsyncOperationResult.git",
         "state": {
           "branch": null,
-          "revision": "98aaf624ca0a2f4374d9a36a5710d2fd4b978eb3",
+          "revision": "cf6a617364267bedc334a9e61cf1f7efd7c0e0b4",
           "version": "1.0.5"
         }
       },
       {
         "package": "KVObserver",
-        "repositoryURL": "git@github.com:happn-app/KVObserver.git",
+        "repositoryURL": "https://github.com/happn-tech/KVObserver.git",
         "state": {
           "branch": null,
-          "revision": "d842931a87b4d7f2187ddd9c7df0ee691a8a3a74",
+          "revision": "3a8bd558a72c9ab393f94a6f947307e8d01c8c9e",
           "version": "0.9.4"
         }
       }
