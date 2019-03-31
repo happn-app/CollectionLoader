@@ -153,7 +153,10 @@
 				7B26FB2920E906480016187C /* Frameworks */,
 				7B661F9C20026ACC00486182 /* Products */,
 			);
+			indentWidth = 3;
 			sourceTree = "<group>";
+			tabWidth = 3;
+			usesTabs = 1;
 		};
 		7B661F9C20026ACC00486182 /* Products */ = {
 			isa = PBXGroup;
