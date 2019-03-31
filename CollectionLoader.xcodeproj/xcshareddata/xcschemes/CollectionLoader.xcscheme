@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7B8BD02120026E8C009BE667"
-               BuildableName = "CollectionLoader-Tests.xctest"
-               BlueprintName = "CollectionLoader-Tests"
+               BuildableName = "CollectionLoaderTests.xctest"
+               BlueprintName = "CollectionLoaderTests"
                ReferencedContainer = "container:CollectionLoader.xcodeproj">
             </BuildableReference>
          </TestableReference>
