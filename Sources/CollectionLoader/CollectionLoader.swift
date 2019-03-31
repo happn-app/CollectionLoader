@@ -132,7 +132,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		#if !NO_HAPPSIGHT
 			nextPage = 0
 		#endif
-		return load(pageLoadDescription: PageLoadDescription<CollectionLoaderHelperType>(forFirstPageWithHelper: helper, numberOfElementsPerPage: numberOfElementsPerPage), force: force)
+		return load(pageLoadDescription: PageLoadDescription(forFirstPageWithHelper: helper, numberOfElementsPerPage: numberOfElementsPerPage), force: force)
 	}
 	
 	/** Loads the page after the latest successfully loaded page.
@@ -143,7 +143,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	@discardableResult
 	public func loadNextPage(force: Bool = false) -> Bool {
 		guard let nextPageInfo = nextPageInfo else {return !isLoadingPage}
-		return load(pageLoadDescription: PageLoadDescription<CollectionLoaderHelperType>(forNextPageWithHelper: helper, nextPageInfo: nextPageInfo), force: force)
+		return load(pageLoadDescription: PageLoadDescription(forNextPageWithHelper: helper, nextPageInfo: nextPageInfo), force: force)
 	}
 	
 	/** Loads the page before the first page, or the latest "previous" page load.
@@ -156,7 +156,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	@discardableResult
 	public func loadPreviousPage(force: Bool = false) -> Bool {
 		guard let previousPageInfo = previousPageInfo else {return !isLoadingPage}
-		return load(pageLoadDescription: PageLoadDescription<CollectionLoaderHelperType>(forPreviousPageWithHelper: helper, previousPageInfo: previousPageInfo), force: force)
+		return load(pageLoadDescription: PageLoadDescription(forPreviousPageWithHelper: helper, previousPageInfo: previousPageInfo), force: force)
 	}
 	
 	/** Cancels the current page loading if any.
@@ -232,6 +232,48 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	   MARK: - Private
 	   *************** */
 	
+	private struct PageLoadDescription {
+		
+		let isFirstPage: Bool
+		
+		let checkHasMore: Bool
+		let checkPreviousPageInfo: Bool
+		
+		let pageOffsets: (start: Int, end: Int)?
+		let pageInfo: CollectionLoaderHelperType.PageInfoType
+		
+		init(forFirstPageWithHelper helper: CollectionLoaderHelperType, numberOfElementsPerPage: Int) {
+			isFirstPage = true
+			
+			checkHasMore = true
+			checkPreviousPageInfo = true
+			
+			pageOffsets = (start: 0, end: numberOfElementsPerPage)
+			pageInfo = helper.pageInfoFor(startOffset: 0, endOffset: numberOfElementsPerPage)
+		}
+		
+		init(forNextPageWithHelper helper: CollectionLoaderHelperType, nextPageInfo: (offsets: (start: Int, end: Int)?, pageInfo: CollectionLoaderHelperType.PageInfoType)) {
+			isFirstPage = false
+			
+			checkHasMore = true
+			checkPreviousPageInfo = false
+			
+			pageOffsets = nextPageInfo.offsets
+			pageInfo = nextPageInfo.pageInfo
+		}
+		
+		init(forPreviousPageWithHelper helper: CollectionLoaderHelperType, previousPageInfo: CollectionLoaderHelperType.PageInfoType) {
+			isFirstPage = false
+			
+			checkHasMore = false
+			checkPreviousPageInfo = true
+			
+			pageOffsets = nil
+			pageInfo = previousPageInfo
+		}
+		
+	}
+	
 	private let kvObserver = KVObserver()
 	
 	private lazy var pageLoadingQueue: OperationQueue = {
@@ -295,10 +337,10 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	private var previousPageInfo: CollectionLoaderHelperType.PageInfoType?
 	private var nextPageInfo: (offsets: (start: Int, end: Int)?, pageInfo: CollectionLoaderHelperType.PageInfoType)?
 	
-	private var endOperationCheck: (checkedOperation: CollectionLoaderHelperType.LoadingOperationType, hadMore: Bool?, pageLoadDescription: PageLoadDescription<CollectionLoaderHelperType>)?
+	private var endOperationCheck: (checkedOperation: CollectionLoaderHelperType.LoadingOperationType, hadMore: Bool?, pageLoadDescription: PageLoadDescription)?
 	
 	@discardableResult
-	private func load(pageLoadDescription: PageLoadDescription<CollectionLoaderHelperType>, force: Bool = false) -> Bool {
+	private func load(pageLoadDescription: PageLoadDescription, force: Bool = false) -> Bool {
 		assert(Thread.isMainThread)
 		
 		let wasLoading = isLoadingPage
@@ -372,52 +414,6 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		endOperationCheck = (checkedOperation: operation, hadMore: nil, pageLoadDescription: pageLoadDescription)
 		pageLoadingQueue.addOperation(operation)
 		return !wasLoading
-	}
-	
-}
-
-
-/* Note: Would have like to be embedded in CollectionLoader (with no generics
- *       then, we reuse the generic in the parent type), but can't because of
- *       Swift crash at runtime (Xcode 8E2002). */
-private struct PageLoadDescription<CollectionLoaderHelperType : CollectionLoaderHelper> {
-	
-	let isFirstPage: Bool
-	
-	let checkHasMore: Bool
-	let checkPreviousPageInfo: Bool
-	
-	let pageOffsets: (start: Int, end: Int)?
-	let pageInfo: CollectionLoaderHelperType.PageInfoType
-	
-	init(forFirstPageWithHelper helper: CollectionLoaderHelperType, numberOfElementsPerPage: Int) {
-		isFirstPage = true
-		
-		checkHasMore = true
-		checkPreviousPageInfo = true
-		
-		pageOffsets = (start: 0, end: numberOfElementsPerPage)
-		pageInfo = helper.pageInfoFor(startOffset: 0, endOffset: numberOfElementsPerPage)
-	}
-	
-	init(forNextPageWithHelper helper: CollectionLoaderHelperType, nextPageInfo: (offsets: (start: Int, end: Int)?, pageInfo: CollectionLoaderHelperType.PageInfoType)) {
-		isFirstPage = false
-		
-		checkHasMore = true
-		checkPreviousPageInfo = false
-		
-		pageOffsets = nextPageInfo.offsets
-		pageInfo = nextPageInfo.pageInfo
-	}
-	
-	init(forPreviousPageWithHelper helper: CollectionLoaderHelperType, previousPageInfo: CollectionLoaderHelperType.PageInfoType) {
-		isFirstPage = false
-		
-		checkHasMore = false
-		checkPreviousPageInfo = true
-		
-		pageOffsets = nil
-		pageInfo = previousPageInfo
 	}
 	
 }
