@@ -42,31 +42,37 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	   MARK: - Config (Read-Write)
 	   *************************** */
 	
-	/** This handler is called by the collection loader when the loading of a
-	page has started. Always called on the main thread. */
+	/**
+	This handler is called by the collection loader when the loading of a page
+	has started. Always called on the main thread. */
 	public var didStartLoadingPageHandler: (() -> Void)?
 	
-	/** This handler is called by the collection loader in the preCompletion
-	state for a page loading (loading is not over, but data from the back has
-	been fetched and parsed). */
+	/**
+	This handler is called by the collection loader in the preCompletion state
+	for a page loading (loading is not over, but data from the back has been
+	fetched and parsed). */
 	public var willFinishLoadingPageHandler: ((_ preresults: CollectionLoaderHelperType.PreCompletionResultsType, _ pageInfo: CollectionLoaderHelperType.PageInfoType, _ offsets: (start: Int, end: Int)?) throws -> Void)?
 	
-	/** This handler is called by the collection loader when the loading of a
-	page is finished. Always called on the main thread. */
+	/**
+	This handler is called by the collection loader when the loading of a page is
+	finished. Always called on the main thread. */
 	public var didFinishLoadingPageHandler: ((_ results:  AsyncOperationResult<CollectionLoaderHelperType.CompletionResultsType>?) -> Void)?
 	
-	/** This handler is called by the collection loader in the preCompletion
-	state for a sync (loading is not over, but data from the back has been
-	fetched and parsed). */
+	/**
+	This handler is called by the collection loader in the preCompletion state
+	for a sync (loading is not over, but data from the back has been fetched and
+	parsed). */
 	public var willFinishSyncHandler: ((CollectionLoaderHelperType.PreCompletionResultsType) throws -> Void)?
 	
-	/** These handlers are called by the collection loader when its loading state
+	/**
+	These handlers are called by the collection loader when its loading state
 	changes. Always called on the main thread. */
 	public var isLoadingPageChangedHandler: (() -> Void)?
 	public var isLoadingPageChangedHandler2: (() -> Void)?
 	
-	/** This handler is called by the collection loader when the
-	`isLoadingFirstPage` property changes. Always called on the main thread. */
+	/**
+	This handler is called by the collection loader when the `isLoadingFirstPage`
+	property changes. Always called on the main thread. */
 	public var isLoadingFirstPageChangedHandler: (() -> Void)?
 	
 	public var canDeleteObjectIdHandler: ((_ objectId: CollectionLoaderHelperType.FetchedObjectsIDType) -> Bool)?
@@ -75,30 +81,36 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	   MARK: - Loader State
 	   ******************** */
 	
-	/** `true` if the last page was not reached. */
+	/**
+	`true` if the last page was not reached. */
 	public var hasMore: Bool = true
 	
-	/** `true` if loading a page, `false` otherwise. Guaranteed to change on the
+	/**
+	`true` if loading a page, `false` otherwise. Guaranteed to change on the
 	main thread.
 	
 	Will not change when syncing. */
 	public var isLoadingPage: Bool = false
 	
-	/** `true` if loading first page, `false otherwise.
-
+	/**
+	`true` if loading first page, `false otherwise.
+	
 	Will not change when syncing. */
 	public var isLoadingFirstPage: Bool = false
 	
-	/** The date of the latest successful page load. Might be nil if no page was
-	ever successful loaded yet. */
+	/**
+	The date of the latest successful page load. Might be nil if no page was ever
+	successful loaded yet. */
 	public var dateLastSuccessfulLoad: Date? = nil
 	
-	/** The error from the latest page load. `nil` if no errors occurred. */
+	/**
+	The error from the latest page load. `nil` if no errors occurred. */
 	public var lastLoadError: Error? = nil
 	
 	#if !NO_HAPPSIGHT
-		/** The latest loaded page #, nil if no pages have been loaded yet. This
-		is used internally by happn for data only. Please do not use, it will be
+		/**
+		The latest loaded page #, nil if no pages have been loaded yet. This is
+		used internally by happn for data only. Please do not use, it will be
 		removed in a future release. */
 		public var lastLoadedPageNumber: Int?
 		private var nextPage = 0
@@ -122,9 +134,10 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	   MARK: - Actions (Must Call on Main Thread)
 	   ****************************************** */
 	
-	/** Loads the page with the given index (first is 0).
+	/**
+	Loads the page with the given index (first is 0).
 	
-	- Param force: If loader is loading a page, the current loading will be
+	- Parameter force: If loader is loading a page, the current loading will be
 	cancelled if `force` is set to true. Otherwise nothing will be done.
 	- Returns: `false` if loader was already loading when the method was called. */
 	@discardableResult
@@ -135,10 +148,11 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		return load(pageLoadDescription: PageLoadDescription(forFirstPageWithHelper: helper, numberOfElementsPerPage: numberOfElementsPerPage), force: force)
 	}
 	
-	/** Loads the page after the latest successfully loaded page.
+	/**
+	Loads the page after the latest successfully loaded page.
 	
-	- Param force: If loader is loading, the current loading will be cancelled if
-	`force` is set to true. Otherwise nothing will be done.
+	- Parameter force: If loader is loading, the current loading will be
+	cancelled if `force` is set to true. Otherwise nothing will be done.
 	- Returns: `false` if loader was already loading when the method was called. */
 	@discardableResult
 	public func loadNextPage(force: Bool = false) -> Bool {
@@ -146,11 +160,12 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		return load(pageLoadDescription: PageLoadDescription(forNextPageWithHelper: helper, nextPageInfo: nextPageInfo), force: force)
 	}
 	
-	/** Loads the page before the first page, or the latest "previous" page load.
+	/**
+	Loads the page before the first page, or the latest "previous" page load.
 	Useful if you want to fetch new data in a timeline without loading the first
 	page (which drops the rest of the timeline).
 	
-	- Param force: If loader is loading, the current loading will be cancelled if
+	- Parameter force: If loader is loading, the current loading will be cancelled if
 	`force` is set to true. Otherwise nothing will be done.
 	- Returns: `false` if loader was already loading when the method was called. */
 	@discardableResult
@@ -159,7 +174,8 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		return load(pageLoadDescription: PageLoadDescription(forPreviousPageWithHelper: helper, previousPageInfo: previousPageInfo), force: force)
 	}
 	
-	/** Cancels the current page loading if any.
+	/**
+	Cancels the current page loading if any.
 	
 	- Returns: `true` if loader was already loading when the method was called. */
 	@discardableResult
@@ -206,7 +222,8 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		return !wasLoading
 	}
 	
-	/** Cancels the current sync if any.
+	/**
+	Cancels the current sync if any.
 	
 	- Returns: `true` if loader was already syncing when the method was called. */
 	@discardableResult
@@ -218,7 +235,8 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		return wasLoading
 	}
 	
-	/** Cancels all current loadings (page and sync).
+	/**
+	Cancels all current loadings (page and sync).
 	
 	- Returns: `true` if loader was loading when the method was called. */
 	@discardableResult
