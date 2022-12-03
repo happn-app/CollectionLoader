@@ -16,7 +16,6 @@ limitations under the License. */
 import Foundation
 
 import KVObserver
-import AsyncOperationResult
 
 
 
@@ -55,7 +54,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	/**
 	 This handler is called by the collection loader when the loading of a page is finished.
 	 Always called on the main thread. */
-	public var didFinishLoadingPageHandler: ((_ results:  AsyncOperationResult<CollectionLoaderHelperType.CompletionResultsType>?) -> Void)?
+	public var didFinishLoadingPageHandler: ((_ results:  Result<CollectionLoaderHelperType.CompletionResultsType, Error>?) -> Void)?
 	
 	/**
 	 This handler is called by the collection loader in the preCompletion state for a sync
@@ -322,7 +321,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 #if !NO_HAPPSIGHT
 				if endOperationResult?.successValue != nil {strongSelf.lastLoadedPageNumber = strongSelf.nextPage; strongSelf.nextPage += 1}
 #endif
-				if let endOperationResult = endOperationResult {strongSelf.lastLoadError = endOperationResult.error}
+				if let endOperationResult = endOperationResult {strongSelf.lastLoadError = endOperationResult.failure}
 				strongSelf.endOperationCheck = nil
 			}
 			

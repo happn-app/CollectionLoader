@@ -8,11 +8,10 @@ let package = Package(
 		.library(name: "CollectionLoader", targets: ["CollectionLoader"]),
 	],
 	dependencies: [
-		.package(url: "https://github.com/happn-app/KVObserver.git", from: "0.9.5"),
-		.package(url: "https://github.com/happn-app/AsyncOperationResult.git", from: "1.0.6")
+		.package(url: "https://github.com/happn-app/KVObserver.git", from: "0.9.5")
 	],
 	targets: [
-		.target(name: "CollectionLoader", dependencies: ["AsyncOperationResult", "KVObserver"]),
+		.target(name: "CollectionLoader", dependencies: ["KVObserver"]),
 		.testTarget(name: "CollectionLoaderTests", dependencies: ["CollectionLoader"])
 	]
 )

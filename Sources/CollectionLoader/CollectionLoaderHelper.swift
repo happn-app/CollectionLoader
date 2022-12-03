@@ -15,8 +15,6 @@ limitations under the License. */
 
 import Foundation
 
-import AsyncOperationResult
-
 
 
 public protocol CollectionLoaderHelper {
@@ -35,7 +33,7 @@ public protocol CollectionLoaderHelper {
 	func pageInfoFor(startOffset: Int, endOffset: Int) -> PageInfoType
 	
 	func operationForLoading(pageInfo: PageInfoType, preRun: (() -> Bool)?, preImport: (() -> Bool)?, preCompletion: ((_ results: PreCompletionResultsType) throws -> Void)?) -> LoadingOperationType
-	func results(fromFinishedLoadingOperation operation: LoadingOperationType) -> AsyncOperationResult<CompletionResultsType>
+	func results(fromFinishedLoadingOperation operation: LoadingOperationType) -> Result<CompletionResultsType, Error>
 	
 	var numberOfCachedObjects: Int {get}
 	func unsafeCachedObjectId(at index: Int) -> FetchedObjectsIDType
