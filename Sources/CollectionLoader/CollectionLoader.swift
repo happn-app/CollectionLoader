@@ -25,12 +25,12 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	public enum LastPageDetectionMethod {
 		case retrievedIncompletePage
 		case retrievedLessOrExactly(Int)
-		case custom(handler: (_ preresults: CollectionLoaderHelperType.PreCompletionResultsType) -> Bool) /* Return true if last page */
+		case custom(handler: (_ preresults: CollectionLoaderHelperType.PreCompletionResultsType) -> Bool) /* Return true if last page. */
 	}
 	
 	/* **************************
-	   MARK: - Config (Read-Only)
-	   ************************** */
+	   MARK: - Config (Read-Only)
+	   ************************** */
 	
 	public let helper: CollectionLoaderHelperType
 	
@@ -39,86 +39,82 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	public let lastPageDetectionMethod: LastPageDetectionMethod
 	
 	/* ***************************
-	   MARK: - Config (Read-Write)
-	   *************************** */
+	   MARK: - Config (Read-Write)
+	   *************************** */
 	
 	/**
-	This handler is called by the collection loader when the loading of a page
-	has started. Always called on the main thread. */
+	 This handler is called by the collection loader when the loading of a page has started.
+	 Always called on the main thread. */
 	public var didStartLoadingPageHandler: (() -> Void)?
 	
 	/**
-	This handler is called by the collection loader in the preCompletion state
-	for a page loading (loading is not over, but data from the back has been
-	fetched and parsed). */
+	 This handler is called by the collection loader in the preCompletion state for a page loading
+	  (loading is not over, but data from the back has been fetched and parsed). */
 	public var willFinishLoadingPageHandler: ((_ preresults: CollectionLoaderHelperType.PreCompletionResultsType, _ pageInfo: CollectionLoaderHelperType.PageInfoType, _ offsets: (start: Int, end: Int)?) throws -> Void)?
 	
 	/**
-	This handler is called by the collection loader when the loading of a page is
-	finished. Always called on the main thread. */
+	 This handler is called by the collection loader when the loading of a page is finished.
+	 Always called on the main thread. */
 	public var didFinishLoadingPageHandler: ((_ results:  AsyncOperationResult<CollectionLoaderHelperType.CompletionResultsType>?) -> Void)?
 	
 	/**
-	This handler is called by the collection loader in the preCompletion state
-	for a sync (loading is not over, but data from the back has been fetched and
-	parsed). */
+	 This handler is called by the collection loader in the preCompletion state for a sync
+	  (loading is not over, but data from the back has been fetched and parsed). */
 	public var willFinishSyncHandler: ((CollectionLoaderHelperType.PreCompletionResultsType) throws -> Void)?
 	
 	/**
-	These handlers are called by the collection loader when its loading state
-	changes. Always called on the main thread. */
+	 These handlers are called by the collection loader when its loading state changes.
+	 Always called on the main thread. */
 	public var isLoadingPageChangedHandler: (() -> Void)?
 	public var isLoadingPageChangedHandler2: (() -> Void)?
 	
 	/**
-	This handler is called by the collection loader when the `isLoadingFirstPage`
-	property changes. Always called on the main thread. */
+	 This handler is called by the collection loader when the `isLoadingFirstPage` property changes.
+	 Always called on the main thread. */
 	public var isLoadingFirstPageChangedHandler: (() -> Void)?
 	
 	public var canDeleteObjectIdHandler: ((_ objectId: CollectionLoaderHelperType.FetchedObjectsIDType) -> Bool)?
 	
 	/* ********************
-	   MARK: - Loader State
-	   ******************** */
+	   MARK: - Loader State
+	   ******************** */
 	
 	/**
-	`true` if the last page was not reached. */
+	 `true` if the last page was not reached. */
 	public var hasMore: Bool = true
 	
 	/**
-	`true` if loading a page, `false` otherwise. Guaranteed to change on the
-	main thread.
-	
-	Will not change when syncing. */
+	 `true` if loading a page, `false` otherwise. Guaranteed to change on the main thread.
+	 
+	 Will not change when syncing. */
 	public var isLoadingPage: Bool = false
 	
 	/**
-	`true` if loading first page, `false otherwise.
-	
-	Will not change when syncing. */
+	 `true` if loading first page, `false otherwise.
+	 
+	 Will not change when syncing. */
 	public var isLoadingFirstPage: Bool = false
 	
 	/**
-	The date of the latest successful page load. Might be nil if no page was ever
-	successful loaded yet. */
+	 The date of the latest successful page load. Might be nil if no page was ever successful loaded yet. */
 	public var dateLastSuccessfulLoad: Date? = nil
 	
 	/**
-	The error from the latest page load. `nil` if no errors occurred. */
+	 The error from the latest page load. `nil` if no errors occurred. */
 	public var lastLoadError: Error? = nil
 	
-	#if !NO_HAPPSIGHT
-		/**
-		The latest loaded page #, nil if no pages have been loaded yet. This is
-		used internally by happn for data only. Please do not use, it will be
-		removed in a future release. */
-		public var lastLoadedPageNumber: Int?
-		private var nextPage = 0
-	#endif
+#if !NO_HAPPSIGHT
+	/**
+	 The latest loaded page #, nil if no pages have been loaded yet.
+	 This is used internally by happn for data only.
+	 Please do not use, it will be removed in a future release. */
+	public var lastLoadedPageNumber: Int?
+	private var nextPage = 0
+#endif
 	
 	/* ************
-	   MARK: - Init
-	   ************ */
+	   MARK: - Init
+	   ************ */
 	
 	public init(collectionLoaderHelper clh: CollectionLoaderHelperType, numberOfElementsPerPage npp: Int, lastPageDetectionMethod lpdm: LastPageDetectionMethod = .retrievedIncompletePage) {
 		helper = clh
@@ -131,29 +127,29 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	}
 	
 	/* ******************************************
-	   MARK: - Actions (Must Call on Main Thread)
-	   ****************************************** */
+	   MARK: - Actions (Must Call on Main Thread)
+	   ****************************************** */
 	
 	/**
-	Loads the page with the given index (first is 0).
-	
-	- Parameter force: If loader is loading a page, the current loading will be
-	cancelled if `force` is set to true. Otherwise nothing will be done.
-	- Returns: `false` if loader was already loading when the method was called. */
+	 Loads the page with the given index (first is 0).
+	 
+	 - Parameter force: If loader is loading a page, the current loading will be cancelled if `force` is set to true.
+	 Otherwise nothing will be done.
+	 - Returns: `false` if loader was already loading when the method was called. */
 	@discardableResult
 	public func loadFirstPage(force: Bool = false) -> Bool {
-		#if !NO_HAPPSIGHT
-			nextPage = 0
-		#endif
+#if !NO_HAPPSIGHT
+		nextPage = 0
+#endif
 		return load(pageLoadDescription: PageLoadDescription(forFirstPageWithHelper: helper, numberOfElementsPerPage: numberOfElementsPerPage), force: force)
 	}
 	
 	/**
-	Loads the page after the latest successfully loaded page.
-	
-	- Parameter force: If loader is loading, the current loading will be
-	cancelled if `force` is set to true. Otherwise nothing will be done.
-	- Returns: `false` if loader was already loading when the method was called. */
+	 Loads the page after the latest successfully loaded page.
+	 
+	 - Parameter force: If loader is loading, the current loading will be cancelled if `force` is set to true.
+	 Otherwise nothing will be done.
+	 - Returns: `false` if loader was already loading when the method was called. */
 	@discardableResult
 	public func loadNextPage(force: Bool = false) -> Bool {
 		guard let nextPageInfo = nextPageInfo else {return !isLoadingPage}
@@ -161,13 +157,12 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	}
 	
 	/**
-	Loads the page before the first page, or the latest "previous" page load.
-	Useful if you want to fetch new data in a timeline without loading the first
-	page (which drops the rest of the timeline).
-	
-	- Parameter force: If loader is loading, the current loading will be cancelled if
-	`force` is set to true. Otherwise nothing will be done.
-	- Returns: `false` if loader was already loading when the method was called. */
+	 Loads the page before the first page, or the latest "previous" page load.
+	 Useful if you want to fetch new data in a timeline without loading the first page (which drops the rest of the timeline).
+	 
+	 - Parameter force: If loader is loading, the current loading will be cancelled if `force` is set to true.
+	 Otherwise nothing will be done.
+	 - Returns: `false` if loader was already loading when the method was called. */
 	@discardableResult
 	public func loadPreviousPage(force: Bool = false) -> Bool {
 		guard let previousPageInfo = previousPageInfo else {return !isLoadingPage}
@@ -175,9 +170,9 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	}
 	
 	/**
-	Cancels the current page loading if any.
-	
-	- Returns: `true` if loader was already loading when the method was called. */
+	 Cancels the current page loading if any.
+	 
+	 - Returns: `true` if loader was already loading when the method was called. */
 	@discardableResult
 	public func cancelCurrentPageLoading() -> Bool {
 		assert(Thread.isMainThread)
@@ -201,16 +196,13 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		let from = max(0, from - 7)
 		
 		let preRunHandler = { () -> Bool in
-			/* TODO: Retrieve the object ids in the cache (we're _before_ running
-			 *       the operation). */
+			/* TODO: Retrieve the object ids in the cache (we’re _before_ running the operation). */
 			return true
 		}
 		let preImportHandler = { () -> Bool in
 			/* TODO: Retrieve the object ids in the cache.
-			 *       If the ids are different than the one fetched in the pre-run
-			 *       handler we cancel the sync (the cached objects have been
-			 *       modified while the objects for the sync were loading; the sync
-			 *       would not have much meaning...) */
+			 * If the ids are different than the one fetched in the pre-run handler we cancel the sync
+			 *  (the cached objects have been modified while the objects for the sync were loading; the sync would not have much meaning…) */
 			return true
 		}
 		let preCompletionHandler = { (_ preresults: CollectionLoaderHelperType.PreCompletionResultsType) -> Void in
@@ -223,9 +215,9 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	}
 	
 	/**
-	Cancels the current sync if any.
-	
-	- Returns: `true` if loader was already syncing when the method was called. */
+	 Cancels the current sync if any.
+	 
+	 - Returns: `true` if loader was already syncing when the method was called. */
 	@discardableResult
 	public func cancelCurrentSync() -> Bool {
 		assert(Thread.isMainThread)
@@ -236,9 +228,9 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	}
 	
 	/**
-	Cancels all current loadings (page and sync).
-	
-	- Returns: `true` if loader was loading when the method was called. */
+	 Cancels all current loadings (page and sync).
+	 
+	 - Returns: `true` if loader was loading when the method was called. */
 	@discardableResult
 	public func cancelAllLoadings() -> Bool {
 		let wasLoadingPage = cancelCurrentPageLoading()
@@ -247,8 +239,8 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	}
 	
 	/* ***************
-	   MARK: - Private
-	   *************** */
+	   MARK: - Private
+	   *************** */
 	
 	private struct PageLoadDescription {
 		
@@ -296,7 +288,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	
 	private lazy var pageLoadingQueue: OperationQueue = {
 		let result = OperationQueue()
-		result.maxConcurrentOperationCount = 1 /* Serial queue */
+		result.maxConcurrentOperationCount = 1 /* Serial queue. */
 		result.name = "Collection Loader Page Loading Queue for \(Unmanaged.passUnretained(self).toOpaque())"
 		_ = kvObserver.observe(object: result, keyPath: #keyPath(OperationQueue.operationCount), kvoOptions: [.new], dispatchType: .directOrAsyncOnMainQueue) { [weak self] change in
 			guard let strongSelf = self else {return}
@@ -327,9 +319,9 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 			}
 			
 			if !isLoading {
-				#if !NO_HAPPSIGHT
-					if endOperationResult?.successValue != nil {strongSelf.lastLoadedPageNumber = strongSelf.nextPage; strongSelf.nextPage += 1}
-				#endif
+#if !NO_HAPPSIGHT
+				if endOperationResult?.successValue != nil {strongSelf.lastLoadedPageNumber = strongSelf.nextPage; strongSelf.nextPage += 1}
+#endif
 				if let endOperationResult = endOperationResult {strongSelf.lastLoadError = endOperationResult.error}
 				strongSelf.endOperationCheck = nil
 			}
@@ -367,8 +359,8 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		pageLoadingQueue.cancelAllOperations()
 		
 		if pageLoadDescription.isFirstPage {
-			/* If we're loading the first page, we'll be destroying everything not
-			 * in the first page after loading. No need to sync, it will fail. */
+			/* If we’re loading the first page, we’ll be destroying everything not in the first page after loading.
+			 * No need to sync, it will fail. */
 			syncQueue.cancelAllOperations()
 		}
 		
@@ -377,14 +369,10 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		if pageLoadDescription.isFirstPage || pageLoadDescription.checkHasMore {
 			var cachedObjectIds = Set<CollectionLoaderHelperType.FetchedObjectsIDType>()
 			if pageLoadDescription.isFirstPage {
-				/* If we're loading the first page, this means we'll have to clear
-				 * the other loaded objects once fetching the first page has
-				 * finished.
-				 * Let's setup the handlers to do that (first here, the other is the
-				 * preCompletion handler). */
+				/* If we’re loading the first page, this means we'll have to clear the other loaded objects once fetching the first page has finished.
+				 * Let’s setup the handlers to do that (first here, the other is the preCompletion handler). */
 				preImportHandler = {
-					/* Before importing the results of the operation, we retrieve the
-					 * object ids of the already loaded (cached) objects. */
+					/* Before importing the results of the operation, we retrieve the object ids of the already loaded (cached) objects. */
 					for i in 0..<self.helper.numberOfCachedObjects {
 						cachedObjectIds.insert(self.helper.unsafeCachedObjectId(at: i))
 					}
@@ -395,9 +383,8 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 			}
 			preCompletionHandler = { preresults in
 				if pageLoadDescription.isFirstPage {
-					/* Now the loading is over and the loaded objects have been
-					 * imported in the cache. Let's remove the objects which were not
-					 * loaded in the page but were already in the cache before. */
+					/* Now the loading is over and the loaded objects have been imported in the cache.
+					 * Let’s remove the objects which were not loaded in the page but were already in the cache before. */
 					var loadedObjectIds = Set<CollectionLoaderHelperType.FetchedObjectsIDType>()
 					for i in 0..<self.helper.numberOfFetchedObjects(for: preresults) {
 						loadedObjectIds.insert(self.helper.unsafeFetchedObjectId(at: i, for: preresults))
@@ -410,9 +397,9 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 				
 				if pageLoadDescription.checkHasMore && self.endOperationCheck != nil {
 					switch self.lastPageDetectionMethod {
-					case .retrievedIncompletePage:           self.endOperationCheck?.hadMore = self.helper.numberOfFetchedObjects(for: preresults) >= self.numberOfElementsPerPage
-					case .retrievedLessOrExactly(let limit): self.endOperationCheck?.hadMore = self.helper.numberOfFetchedObjects(for: preresults) >  limit
-					case .custom(let handler):               self.endOperationCheck?.hadMore = handler(preresults)
+						case .retrievedIncompletePage:           self.endOperationCheck?.hadMore = self.helper.numberOfFetchedObjects(for: preresults) >= self.numberOfElementsPerPage
+						case .retrievedLessOrExactly(let limit): self.endOperationCheck?.hadMore = self.helper.numberOfFetchedObjects(for: preresults) >  limit
+						case .custom(let handler):               self.endOperationCheck?.hadMore = handler(preresults)
 					}
 				}
 				
