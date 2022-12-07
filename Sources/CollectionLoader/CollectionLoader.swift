@@ -19,19 +19,19 @@ import KVObserver
 
 
 
-public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoaderHelper> {
+public final class CollectionLoader<CollectionLoaderHelper : CollectionLoaderHelperProtocol> {
 	
 	public enum LastPageDetectionMethod {
 		case retrievedIncompletePage
 		case retrievedLessOrExactly(Int)
-		case custom(handler: (_ preresults: CollectionLoaderHelperType.PreCompletionResultsType) -> Bool) /* Return true if last page. */
+		case custom(handler: (_ preresults: CollectionLoaderHelper.PreCompletionResults) -> Bool) /* Return true if last page. */
 	}
 	
 	/* **************************
 	   MARK: - Config (Read-Only)
 	   ************************** */
 	
-	public let helper: CollectionLoaderHelperType
+	public let helper: CollectionLoaderHelper
 	
 	public let numberOfElementsPerPage: Int
 	/* Only used if the helper does not return a next page. */
@@ -49,17 +49,17 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	/**
 	 This handler is called by the collection loader in the preCompletion state for a page loading
 	  (loading is not over, but data from the back has been fetched and parsed). */
-	public var willFinishLoadingPageHandler: ((_ preresults: CollectionLoaderHelperType.PreCompletionResultsType, _ pageInfo: CollectionLoaderHelperType.PageInfoType, _ offsets: (start: Int, end: Int)?) throws -> Void)?
+	public var willFinishLoadingPageHandler: ((_ preresults: CollectionLoaderHelper.PreCompletionResults, _ pageInfo: CollectionLoaderHelper.PageInfo, _ offsets: (start: Int, end: Int)?) throws -> Void)?
 	
 	/**
 	 This handler is called by the collection loader when the loading of a page is finished.
 	 Always called on the main thread. */
-	public var didFinishLoadingPageHandler: ((_ results:  Result<CollectionLoaderHelperType.CompletionResultsType, Error>?) -> Void)?
+	public var didFinishLoadingPageHandler: ((_ results:  Result<CollectionLoaderHelper.CompletionResults, Error>?) -> Void)?
 	
 	/**
 	 This handler is called by the collection loader in the preCompletion state for a sync
 	  (loading is not over, but data from the back has been fetched and parsed). */
-	public var willFinishSyncHandler: ((CollectionLoaderHelperType.PreCompletionResultsType) throws -> Void)?
+	public var willFinishSyncHandler: ((CollectionLoaderHelper.PreCompletionResults) throws -> Void)?
 	
 	/**
 	 These handlers are called by the collection loader when its loading state changes.
@@ -72,7 +72,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	 Always called on the main thread. */
 	public var isLoadingFirstPageChangedHandler: (() -> Void)?
 	
-	public var canDeleteObjectIdHandler: ((_ objectId: CollectionLoaderHelperType.FetchedObjectsIDType) -> Bool)?
+	public var canDeleteObjectIdHandler: ((_ objectId: CollectionLoaderHelper.FetchedObjectID) -> Bool)?
 	
 	/* ********************
 	   MARK: - Loader State
@@ -115,7 +115,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 	   MARK: - Init
 	   ************ */
 	
-	public init(collectionLoaderHelper clh: CollectionLoaderHelperType, numberOfElementsPerPage npp: Int, lastPageDetectionMethod lpdm: LastPageDetectionMethod = .retrievedIncompletePage) {
+	public init(collectionLoaderHelper clh: CollectionLoaderHelper, numberOfElementsPerPage npp: Int, lastPageDetectionMethod lpdm: LastPageDetectionMethod = .retrievedIncompletePage) {
 		helper = clh
 		numberOfElementsPerPage = npp
 		lastPageDetectionMethod = lpdm
@@ -204,7 +204,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 			 *  (the cached objects have been modified while the objects for the sync were loading; the sync would not have much meaning…) */
 			return true
 		}
-		let preCompletionHandler = { (_ preresults: CollectionLoaderHelperType.PreCompletionResultsType) -> Void in
+		let preCompletionHandler = { (_ preresults: CollectionLoaderHelper.PreCompletionResults) -> Void in
 			/* TODO: The actual sync. */
 		}
 		
@@ -249,9 +249,9 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		let checkPreviousPageInfo: Bool
 		
 		let pageOffsets: (start: Int, end: Int)?
-		let pageInfo: CollectionLoaderHelperType.PageInfoType
+		let pageInfo: CollectionLoaderHelper.PageInfo
 		
-		init(forFirstPageWithHelper helper: CollectionLoaderHelperType, numberOfElementsPerPage: Int) {
+		init(forFirstPageWithHelper helper: CollectionLoaderHelper, numberOfElementsPerPage: Int) {
 			isFirstPage = true
 			
 			checkHasMore = true
@@ -261,7 +261,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 			pageInfo = helper.pageInfoFor(startOffset: 0, endOffset: numberOfElementsPerPage)
 		}
 		
-		init(forNextPageWithHelper helper: CollectionLoaderHelperType, nextPageInfo: (offsets: (start: Int, end: Int)?, pageInfo: CollectionLoaderHelperType.PageInfoType)) {
+		init(forNextPageWithHelper helper: CollectionLoaderHelper, nextPageInfo: (offsets: (start: Int, end: Int)?, pageInfo: CollectionLoaderHelper.PageInfo)) {
 			isFirstPage = false
 			
 			checkHasMore = true
@@ -271,7 +271,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 			pageInfo = nextPageInfo.pageInfo
 		}
 		
-		init(forPreviousPageWithHelper helper: CollectionLoaderHelperType, previousPageInfo: CollectionLoaderHelperType.PageInfoType) {
+		init(forPreviousPageWithHelper helper: CollectionLoaderHelper, previousPageInfo: CollectionLoaderHelper.PageInfo) {
 			isFirstPage = false
 			
 			checkHasMore = false
@@ -343,10 +343,10 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		return result
 	}()
 	
-	private var previousPageInfo: CollectionLoaderHelperType.PageInfoType?
-	private var nextPageInfo: (offsets: (start: Int, end: Int)?, pageInfo: CollectionLoaderHelperType.PageInfoType)?
+	private var previousPageInfo: CollectionLoaderHelper.PageInfo?
+	private var nextPageInfo: (offsets: (start: Int, end: Int)?, pageInfo: CollectionLoaderHelper.PageInfo)?
 	
-	private var endOperationCheck: (checkedOperation: CollectionLoaderHelperType.LoadingOperationType, hadMore: Bool?, pageLoadDescription: PageLoadDescription)?
+	private var endOperationCheck: (checkedOperation: CollectionLoaderHelper.LoadingOperation, hadMore: Bool?, pageLoadDescription: PageLoadDescription)?
 	
 	@discardableResult
 	private func load(pageLoadDescription: PageLoadDescription, force: Bool = false) -> Bool {
@@ -364,9 +364,9 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 		}
 		
 		let preImportHandler: (() -> Bool)?
-		let preCompletionHandler: ((_ preresults: CollectionLoaderHelperType.PreCompletionResultsType) throws -> Void)?
+		let preCompletionHandler: ((_ preresults: CollectionLoaderHelper.PreCompletionResults) throws -> Void)?
 		if pageLoadDescription.isFirstPage || pageLoadDescription.checkHasMore {
-			var cachedObjectIds = Set<CollectionLoaderHelperType.FetchedObjectsIDType>()
+			var cachedObjectIds = Set<CollectionLoaderHelper.FetchedObjectID>()
 			if pageLoadDescription.isFirstPage {
 				/* If we’re loading the first page, this means we'll have to clear the other loaded objects once fetching the first page has finished.
 				 * Let’s setup the handlers to do that (first here, the other is the preCompletion handler). */
@@ -384,7 +384,7 @@ public final class CollectionLoader<CollectionLoaderHelperType : CollectionLoade
 				if pageLoadDescription.isFirstPage {
 					/* Now the loading is over and the loaded objects have been imported in the cache.
 					 * Let’s remove the objects which were not loaded in the page but were already in the cache before. */
-					var loadedObjectIds = Set<CollectionLoaderHelperType.FetchedObjectsIDType>()
+					var loadedObjectIds = Set<CollectionLoaderHelper.FetchedObjectID>()
 					for i in 0..<self.helper.numberOfFetchedObjects(for: preresults) {
 						loadedObjectIds.insert(self.helper.unsafeFetchedObjectId(at: i, for: preresults))
 					}
