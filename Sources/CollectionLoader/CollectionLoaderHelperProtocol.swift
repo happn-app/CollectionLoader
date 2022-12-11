@@ -36,12 +36,12 @@ public protocol CollectionLoaderHelperProtocol {
 	func results(fromFinishedLoadingOperation operation: LoadingOperation) -> Result<CompletionResults, Error>
 	
 	var numberOfCachedObjects: Int {get}
-	func unsafeCachedObjectId(at index: Int) -> FetchedObjectID
+	func unsafeCachedObjectID(at index: Int) -> FetchedObjectID
 	
 	func numberOfFetchedObjects(for preCompletionResults: PreCompletionResults) -> Int
-	func unsafeFetchedObjectId(at index: Int, for preCompletionResults: PreCompletionResults) -> FetchedObjectID
+	func unsafeFetchedObjectID(at index: Int, for preCompletionResults: PreCompletionResults) -> FetchedObjectID
 	
-	func unsafeRemove(objectId: FetchedObjectID, hardDelete: Bool)
+	func unsafeRemove(objectID: FetchedObjectID, hardDelete: Bool)
 	
 	/* Return nil if you want the collection loader to infer the next page info from current page offsets.
 	 * Return .some(nil) if you know there are no more pages to load.

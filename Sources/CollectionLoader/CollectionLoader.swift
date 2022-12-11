@@ -72,7 +72,7 @@ public final class CollectionLoader<CollectionLoaderHelper : CollectionLoaderHel
 	 Always called on the main thread. */
 	public var isLoadingFirstPageChangedHandler: (() -> Void)?
 	
-	public var canDeleteObjectIdHandler: ((_ objectId: CollectionLoaderHelper.FetchedObjectID) -> Bool)?
+	public var canDeleteObjectIDHandler: ((_ objectID: CollectionLoaderHelper.FetchedObjectID) -> Bool)?
 	
 	/* ********************
 	   MARK: - Loader State
@@ -366,14 +366,14 @@ public final class CollectionLoader<CollectionLoaderHelper : CollectionLoaderHel
 		let preImportHandler: (() -> Bool)?
 		let preCompletionHandler: ((_ preresults: CollectionLoaderHelper.PreCompletionResults) throws -> Void)?
 		if pageLoadDescription.isFirstPage || pageLoadDescription.checkHasMore {
-			var cachedObjectIds = Set<CollectionLoaderHelper.FetchedObjectID>()
+			var cachedObjectIDs = Set<CollectionLoaderHelper.FetchedObjectID>()
 			if pageLoadDescription.isFirstPage {
 				/* If we’re loading the first page, this means we'll have to clear the other loaded objects once fetching the first page has finished.
 				 * Let’s setup the handlers to do that (first here, the other is the preCompletion handler). */
 				preImportHandler = {
 					/* Before importing the results of the operation, we retrieve the object ids of the already loaded (cached) objects. */
 					for i in 0..<self.helper.numberOfCachedObjects {
-						cachedObjectIds.insert(self.helper.unsafeCachedObjectId(at: i))
+						cachedObjectIDs.insert(self.helper.unsafeCachedObjectID(at: i))
 					}
 					return true
 				}
@@ -384,13 +384,13 @@ public final class CollectionLoader<CollectionLoaderHelper : CollectionLoaderHel
 				if pageLoadDescription.isFirstPage {
 					/* Now the loading is over and the loaded objects have been imported in the cache.
 					 * Let’s remove the objects which were not loaded in the page but were already in the cache before. */
-					var loadedObjectIds = Set<CollectionLoaderHelper.FetchedObjectID>()
+					var loadedObjectIDs = Set<CollectionLoaderHelper.FetchedObjectID>()
 					for i in 0..<self.helper.numberOfFetchedObjects(for: preresults) {
-						loadedObjectIds.insert(self.helper.unsafeFetchedObjectId(at: i, for: preresults))
+						loadedObjectIDs.insert(self.helper.unsafeFetchedObjectID(at: i, for: preresults))
 					}
-					let objectIdsToDelete = cachedObjectIds.subtracting(loadedObjectIds)
-					objectIdsToDelete.forEach{ objectId in
-						if self.canDeleteObjectIdHandler?(objectId) ?? true {self.helper.unsafeRemove(objectId: objectId, hardDelete: false)}
+					let objectIDsToDelete = cachedObjectIDs.subtracting(loadedObjectIDs)
+					objectIDsToDelete.forEach{ objectID in
+						if self.canDeleteObjectIDHandler?(objectID) ?? true {self.helper.unsafeRemove(objectID: objectID, hardDelete: false)}
 					}
 				}
 				
