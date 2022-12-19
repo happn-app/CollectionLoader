@@ -22,9 +22,11 @@ import KVObserver
 public final class CollectionLoader<CollectionLoaderHelper : CollectionLoaderHelperProtocol> {
 	
 	public enum LastPageDetectionMethod {
+		
 		case retrievedIncompletePage
 		case retrievedLessOrExactly(Int)
 		case custom(handler: (_ preresults: CollectionLoaderHelper.PreCompletionResults) -> Bool) /* Return true if last page. */
+		
 	}
 	
 	/* **************************
@@ -102,15 +104,6 @@ public final class CollectionLoader<CollectionLoaderHelper : CollectionLoaderHel
 	 The error from the latest page load. `nil` if no errors occurred. */
 	public var lastLoadError: Error? = nil
 	
-#if !NO_HAPPSIGHT
-	/**
-	 The latest loaded page #, nil if no pages have been loaded yet.
-	 This is used internally by happn for data only.
-	 Please do not use, it will be removed in a future release. */
-	public var lastLoadedPageNumber: Int?
-	private var nextPage = 0
-#endif
-	
 	/* ************
 	   MARK: - Init
 	   ************ */
@@ -137,9 +130,6 @@ public final class CollectionLoader<CollectionLoaderHelper : CollectionLoaderHel
 	 - Returns: `false` if loader was already loading when the method was called. */
 	@discardableResult
 	public func loadFirstPage(force: Bool = false) -> Bool {
-#if !NO_HAPPSIGHT
-		nextPage = 0
-#endif
 		return load(pageLoadDescription: PageLoadDescription(forFirstPageWithHelper: helper, numberOfElementsPerPage: numberOfElementsPerPage), force: force)
 	}
 	
@@ -318,9 +308,6 @@ public final class CollectionLoader<CollectionLoaderHelper : CollectionLoaderHel
 			}
 			
 			if !isLoading {
-#if !NO_HAPPSIGHT
-				if endOperationResult?.successValue != nil {strongSelf.lastLoadedPageNumber = strongSelf.nextPage; strongSelf.nextPage += 1}
-#endif
 				if let endOperationResult = endOperationResult {strongSelf.lastLoadError = endOperationResult.failure}
 				strongSelf.endOperationCheck = nil
 			}
