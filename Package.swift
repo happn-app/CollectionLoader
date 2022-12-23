@@ -1,6 +1,6 @@
 // swift-tools-version:5.1
 import PackageDescription
-func buildArray<Element>(of type: Any.Type = Element.self, _ builder: (_ collection: inout [Element]) -> Void) -> [Element] {
+func a<Element>(of type: Any.Type = Element.self, _ builder: (_ collection: inout [Element]) -> Void) -> [Element] {
 	var ret = [Element](); builder(&ret); return ret
 }
 
@@ -10,19 +10,25 @@ let package = Package(
 	name: "CollectionLoader",
 	
 	
-	products: buildArray{
+	platforms: [
+		.macOS(.v10_15),
+		.tvOS(.v13),
+		.iOS(.v13),
+		.watchOS(.v6)
+	],
+	
+	
+	products: a{
 		$0.append(.library(name: "CollectionLoader", targets: ["CollectionLoader"]))
 	},
 	
 	
-	dependencies: buildArray{
-		$0.append(.package(url: "https://github.com/happn-app/KVObserver.git", from: "0.9.5"))
+	dependencies: a{ r in
 	},
 	
 	
-	targets: buildArray{
-		$0.append(.target(name: "CollectionLoader", dependencies: buildArray{
-			$0.append(.product(name: "KVObserver", package: "KVObserver"))
+	targets: a{
+		$0.append(.target(name: "CollectionLoader", dependencies: a{ _ in
 		}))
 		$0.append(.testTarget(name: "CollectionLoaderTests", dependencies: ["CollectionLoader"]))
 	}

@@ -1,5 +1,5 @@
 /*
-Copyright 2019 happn
+Copyright 2022 happn
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,20 +17,12 @@ import Foundation
 
 
 
-extension Result {
+public protocol PageInfoProtocol {
 	
-	var successValue: Success? {
-		switch self {
-			case .success(let s): return s
-			case .failure:        return nil
-		}
-	}
-	
-	var failure: Failure? {
-		switch self {
-			case .failure(let f): return f
-			case .success:        return nil
-		}
-	}
+	/**
+	 Return `true` if any current object in the collection not loaded from this page info should be cleared.
+	 
+	 Usually, `true` will be returned here only for the initial page. */
+	var shouldClearOtherObjects: Bool {get}
 	
 }
