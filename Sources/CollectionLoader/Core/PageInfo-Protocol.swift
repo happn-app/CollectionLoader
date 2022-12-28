@@ -18,11 +18,4 @@ import Foundation
 
 
 public protocol PageInfoProtocol {
-	
-	/**
-	 Return `true` if any current object in the collection not loaded from this page info should be cleared.
-	 
-	 Usually, `true` will be returned here only for the initial page. */
-	var shouldClearOtherObjects: Bool {get}
-	
 }

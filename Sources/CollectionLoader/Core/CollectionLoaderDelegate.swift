@@ -30,6 +30,19 @@ public protocol CollectionLoaderDelegate<CollectionLoaderHelper> : AnyObject {
 	func didStartLoading(pageInfo: PageInfo)
 	/** Throwing here will fail the import part of the loading operation. */
 	func onContext_willFinishLoading(_ pageInfo: PageInfo, results: PreCompletionResults) throws
+	/* About the 5 nbsp in the doc-comment below: I would want a new line.
+	 * But with this SHITTY format that is markdown that seems impossible.
+	 * (At least with Apple’s implementation of markdown.
+	 *  But markdown is shitty anyways; all hail asciidoc!) */
+	/**
+	 Called when the loading of the page info has finished.
+	 
+	 In a normal scenario, the ``didStartLoading(pageInfo:)-203tu`` method is called first, then ``onContext_willFinishLoading(_:results:)-8num``, and then this method.
+	 
+	 - Important: There is a scenario where the two other methods might not be called and this one would be called directly:
+	  if the helper fails retrieving the operation to load the given page info (``CollectionLoaderHelperProtocol/operationForLoading(pageInfo:delegate:)`` throws an error).
+	 In this case, and in this case only, this method will be called _synchronously_, before the ``CollectionLoader/load(pageInfo:concurrentLoadBehavior:customOperationDependencies:)`` even returns.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	 This is also the only case where a page load delegate would be called out of order from the order they were started. */
 	@MainActor
 	func didFinishLoading(_ pageInfo: PageInfo, results: Result<CompletionResults, Error>)
 	
