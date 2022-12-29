@@ -17,7 +17,7 @@ import Foundation
 
 
 
-public struct PageLoadDescription<PageInfo : PageInfoProtocol, FetchedObject : Hashable, LoadingOperation : Operation> {
+public struct PageLoadDescription<PageInfo : PageInfoProtocol, FetchedObject : Hashable> {
 	
 	public enum Reason {
 		
@@ -31,12 +31,9 @@ public struct PageLoadDescription<PageInfo : PageInfoProtocol, FetchedObject : H
 	public var loadedPage: PageInfo
 	public var loadingReason: Reason
 	
-	public var loadingOperation: LoadingOperation
-	
-	internal init(loadedPage: PageInfo, loadingReason: Reason, loadingOperation: LoadingOperation) {
+	internal init(loadedPage: PageInfo, loadingReason: Reason) {
 		self.loadedPage = loadedPage
 		self.loadingReason = loadingReason
-		self.loadingOperation = loadingOperation
 	}
 	
 }

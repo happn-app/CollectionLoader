@@ -21,6 +21,7 @@ import Foundation
 public final class CollectionLoader<Helper : CollectionLoaderHelperProtocol> {
 	
 	public typealias PageInfo = Helper.PageInfo
+	public typealias CLPageLoadDescription = PageLoadDescription<PageInfo, Helper.FetchedObject>
 	
 	public let helper: Helper
 	/**
@@ -40,13 +41,14 @@ public final class CollectionLoader<Helper : CollectionLoaderHelperProtocol> {
 	 
 	 We did not name this `loadFirstPage` because if the collection is bidirectional, the initial page might not be the first. */
 	public func loadInitialPage() {
-		load(pageInfo: helper.initialPageInfo(), concurrentLoadBehavior: .cancelAllOther)
+		let pld = CLPageLoadDescription(loadedPage: helper.initialPageInfo(), loadingReason: .initialPage)
+		load(pageLoadDescription: pld, concurrentLoadBehavior: .cancelAllOther)
 	}
 	
 	/**
 	 Only one page load at a time is allowed.
 	 All of the loading operations are launched in a queue with a maximum concurrent operation count set to 1. */
-	public func load(pageInfo: PageInfo, concurrentLoadBehavior: ConcurrentLoadBehavior = .queue, customOperationDependencies: [Operation] = []) {
+	public func load(pageLoadDescription: CLPageLoadDescription, concurrentLoadBehavior: ConcurrentLoadBehavior = .queue, customOperationDependencies: [Operation] = []) {
 		let loadingOperationDelegate = HandlerLoadingOperationDelegate<Helper.PreCompletionResults>(
 			willStart: {
 				return true
@@ -59,8 +61,8 @@ public final class CollectionLoader<Helper : CollectionLoaderHelperProtocol> {
 		)
 		
 		let operation: Operation
-		do    {operation = try helper.operationForLoading(pageInfo: pageInfo, delegate: loadingOperationDelegate)}
-		catch {callDidFinishLoading(on: delegate, pageInfo: pageInfo, results: .failure(error)); return}
+		do    {operation = try helper.operationForLoading(pageInfo: pageLoadDescription.loadedPage, delegate: loadingOperationDelegate)}
+		catch {callDidFinishLoading(on: delegate, pageLoadDescription: pageLoadDescription, results: .failure(error)); return}
 		
 		let prestart = BlockOperation{ [weak self] in
 			/* On main queue (and thus on main actor/thread). */
@@ -135,14 +137,14 @@ public final class CollectionLoader<Helper : CollectionLoaderHelperProtocol> {
 	}
 	
 	/* Maybe some day in a future version of Swift these will not be required. */
-	private func callDidFinishLoading(on delegate: (any CollectionLoaderDelegate<Helper>)?, pageInfo: PageInfo, results: Result<Helper.CompletionResults, Error>) {
+	private func callDidFinishLoading(on delegate: (any CollectionLoaderDelegate<Helper>)?, pageLoadDescription: CLPageLoadDescription, results: Result<Helper.CompletionResults, Error>) {
 		if let delegate {
-			callDidFinishLoading(on: delegate, pageInfo: pageInfo, results: results)
+			callDidFinishLoading(on: delegate, pageLoadDescription: pageLoadDescription, results: results)
 		}
 	}
-	private func callDidFinishLoading<Delegate : CollectionLoaderDelegate>(on delegate: Delegate, pageInfo: PageInfo, results: Result<Helper.CompletionResults, Error>)
+	private func callDidFinishLoading<Delegate : CollectionLoaderDelegate>(on delegate: Delegate, pageLoadDescription: CLPageLoadDescription, results: Result<Helper.CompletionResults, Error>)
 	where Delegate.CollectionLoaderHelper == Helper {
-		delegate.didFinishLoading(pageInfo, results: results)
+		delegate.didFinishLoading(pageLoadDescription: pageLoadDescription, results: results)
 	}
 	
 }
