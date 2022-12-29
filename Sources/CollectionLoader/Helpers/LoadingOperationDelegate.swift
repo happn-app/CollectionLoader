@@ -22,16 +22,15 @@ public protocol LoadingOperationDelegate<PreCompletionResults> {
 	associatedtype PreCompletionResults
 	
 	/**
-	 If this returns `false`, the remote operation should _not_ be started, but the loading operation should finish successfully.
-	 If this throws the remote operation should _not_ be started either, and the loading operation should fail. */
-	func onContext_remoteOperationWillStart() -> Bool
+	 If this returns `false`, the remote operation should _not_ be started, but the loading operation should finish successfully. */
+	func onContext_remoteOperationWillStart(isOperationCancelled: () -> Bool) -> Bool
 	/**
 	 If this returns `false`, the remote operation results should _not_ be imported, but the loading operation should finish successfully.
 	 If this throws, the import should not be attempted and the loading operation should fail. */
-	func onContext_operationWillImportResults() throws -> Bool
+	func onContext_operationWillImportResults(isOperationCancelled: () -> Bool) throws -> Bool
 	/**
 	 This must be called just after the import has finished, while still on the db context.
 	 If this throws, the loading operation should fail. */
-	func onContext_operationDidFinishImport(results: PreCompletionResults) throws
+	func onContext_operationDidFinishImport(results: PreCompletionResults, isOperationCancelled: () -> Bool) throws
 	
 }

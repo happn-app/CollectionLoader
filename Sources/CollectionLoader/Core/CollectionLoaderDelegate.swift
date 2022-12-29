@@ -29,15 +29,15 @@ public protocol CollectionLoaderDelegate<CollectionLoaderHelper> : AnyObject {
 	typealias CLDPageLoadDescription = PageLoadDescription<PageInfo, FetchedObject>
 	
 	@MainActor
-	func didStartLoading(pageLoadDescription: CLDPageLoadDescription)
+	func willStartLoading(pageLoadDescription: CLDPageLoadDescription)
 	/**
 	 Called when the loading of the page info has finished.
 	 
-	 In a normal scenario, the ``didStartLoading(pageInfo:)-203tu`` method is called first, then optionally ``onContext_willFinishLoading(_:results:)-8num``, and then this method.
+	 In a normal scenario, the ``willStartLoading(pageLoadDescription:)-3wlbd`` method is called first, then optionally ``onContext_willFinishLoading(pageLoadDescription:results:isOperationCancelled:)-7abf7``, and then this method.
 	 
-	 There is a scenario where ``didStartLoading(pageInfo:)-203tu`` might not be called though:
+	 There is a scenario where ``willStartLoading(pageLoadDescription:)-3wlbd`` might not be called though:
 	  if the helper fails retrieving the operation to load the given page info (``CollectionLoaderHelperProtocol/operationForLoading(pageInfo:delegate:)`` throws an error).
-	 In this case, and in this case only, this method will be called _synchronously_, before the ``CollectionLoader/load(pageInfo:concurrentLoadBehavior:customOperationDependencies:)`` even returns.
+	 In this case, and in this case only, this method will be called _synchronously_, before the ``CollectionLoader/load(pageLoadDescription:concurrentLoadBehavior:customOperationDependencies:)`` even returns.
 	 
 	 This is also the only case where a page load delegate method would be called for a page info out of order from the order it was sent. */
 	@MainActor
@@ -69,7 +69,7 @@ public protocol CollectionLoaderDelegate<CollectionLoaderHelper> : AnyObject {
 public extension CollectionLoaderDelegate {
 	
 	@MainActor
-	func didStartLoading(pageLoadDescription: CLDPageLoadDescription) {
+	func willStartLoading(pageLoadDescription: CLDPageLoadDescription) {
 	}
 	
 	@MainActor
