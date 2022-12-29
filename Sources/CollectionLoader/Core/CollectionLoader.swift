@@ -119,9 +119,17 @@ public final class CollectionLoader<Helper : CollectionLoaderHelperProtocol> {
 		}
 		
 		func cancel() {
-			prestart.cancel()
+			/* We do NOT cancel the prestart and completion operations.
+			 * If we did, we could get missing notifications in the delegate, which we want to avoid.
+			 *
+			 * This would happen because
+			 *   1/ cancelled operation’s dependencies are ignored and
+			 *   2/ the start() method finishes the operation without even launching it for most operations
+			 *       (tested for a block operation: if it is cancelled when added in the queue, the block will not run).
+			 *
+			 * So for instance if the prestart operation has run but the loading operation is still in progress while a group is cancelled,
+			 *  the completion operation would be completely skipped and the delegate would not be called. */
 			loading.cancel()
-			completion.cancel()
 		}
 		
 	}

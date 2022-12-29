@@ -21,32 +21,47 @@ public protocol CollectionLoaderDelegate<CollectionLoaderHelper> : AnyObject {
 	
 	associatedtype CollectionLoaderHelper : CollectionLoaderHelperProtocol
 	
-	typealias PageInfo             = CollectionLoaderHelper.PageInfo
-	typealias FetchedObject        = CollectionLoaderHelper.FetchedObject
-	typealias CompletionResults    = CollectionLoaderHelper.CompletionResults
-	typealias PreCompletionResults = CollectionLoaderHelper.PreCompletionResults
+	typealias PageInfo               = CollectionLoaderHelper.PageInfo
+	typealias FetchedObject          = CollectionLoaderHelper.FetchedObject
+	typealias CompletionResults      = CollectionLoaderHelper.CompletionResults
+	typealias PreCompletionResults   = CollectionLoaderHelper.PreCompletionResults
+	/* Note: We would want to name this typealias PageLoadDescription but it’s not possible because CollectionLoader.PageLoadDescription fails to resolve (Swift tries to find the PageLoadDescription type inside the CollectionLoader *class* instead of the module). */
+	typealias CLDPageLoadDescription = PageLoadDescription<PageInfo, FetchedObject>
 	
 	@MainActor
-	func didStartLoading(pageInfo: PageInfo)
-	/** Throwing here will fail the import part of the loading operation. */
-	func onContext_willFinishLoading(_ pageInfo: PageInfo, results: PreCompletionResults) throws
-	/* About the 5 nbsp in the doc-comment below: I would want a new line.
-	 * But with this SHITTY format that is markdown that seems impossible.
-	 * (At least with Apple’s implementation of markdown.
-	 *  But markdown is shitty anyways; all hail asciidoc!) */
+	func didStartLoading(pageLoadDescription: CLDPageLoadDescription)
 	/**
 	 Called when the loading of the page info has finished.
 	 
-	 In a normal scenario, the ``didStartLoading(pageInfo:)-203tu`` method is called first, then ``onContext_willFinishLoading(_:results:)-8num``, and then this method.
+	 In a normal scenario, the ``didStartLoading(pageInfo:)-203tu`` method is called first, then optionally ``onContext_willFinishLoading(_:results:)-8num``, and then this method.
 	 
-	 - Important: There is a scenario where the two other methods might not be called and this one would be called directly:
+	 There is a scenario where ``didStartLoading(pageInfo:)-203tu`` might not be called though:
 	  if the helper fails retrieving the operation to load the given page info (``CollectionLoaderHelperProtocol/operationForLoading(pageInfo:delegate:)`` throws an error).
-	 In this case, and in this case only, this method will be called _synchronously_, before the ``CollectionLoader/load(pageInfo:concurrentLoadBehavior:customOperationDependencies:)`` even returns.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	 This is also the only case where a page load delegate would be called out of order from the order they were started. */
+	 In this case, and in this case only, this method will be called _synchronously_, before the ``CollectionLoader/load(pageInfo:concurrentLoadBehavior:customOperationDependencies:)`` even returns.
+	 
+	 This is also the only case where a page load delegate method would be called for a page info out of order from the order it was sent. */
 	@MainActor
-	func didFinishLoading(_ pageInfo: PageInfo, results: Result<CompletionResults, Error>)
+	func didFinishLoading(pageLoadDescription: CLDPageLoadDescription, results: Result<CompletionResults, Error>)
 	
-	func canDelete(object: FetchedObject) -> Bool
+	/**
+	 Return `false` to prevent the deletion of a fetched object that should be deleted if the page load went normally.
+	 
+	 When the loading operation finishes, depending on the reason of the loading, some objects might be deleted from the collection.
+	 
+	 For instance for an initial page load, all objects in the collection _not_ in the objects returned by the loading operation should be deleted.
+	 
+	 By implementing this method you can prevent the removal of some objects. */
+	func onContext_canDelete(object: FetchedObject) -> Bool
+	
+	/**
+	 Called _just_ before the loading operation finishes, just after the objects are imported in the local db.
+	 
+	 Throwing here will fail the import part of the loading operation.
+	 
+	 If the `isOperationCancelled` block returns `true`, you should cancel your actions as soon as possible.
+	 
+	 This might not be called if the operation fails before reaching this point (including cancellation). */
+	func onContext_willFinishLoading(pageLoadDescription: CLDPageLoadDescription, results: PreCompletionResults, isOperationCancelled: () -> Bool) throws
 	
 }
 
@@ -54,18 +69,18 @@ public protocol CollectionLoaderDelegate<CollectionLoaderHelper> : AnyObject {
 public extension CollectionLoaderDelegate {
 	
 	@MainActor
-	func didStartLoading(pageInfo: PageInfo) {
-	}
-	
-	func onContext_willFinishLoading(_ pageInfo: PageInfo, results: PreCompletionResults) throws {
+	func didStartLoading(pageLoadDescription: CLDPageLoadDescription) {
 	}
 	
 	@MainActor
-	func didFinishLoading(_ pageInfo: PageInfo, results: Result<CompletionResults, Error>) {
+	func didFinishLoading(pageLoadDescription: CLDPageLoadDescription, results: Result<CompletionResults, Error>) {
 	}
 	
-	func canDelete(object: FetchedObject) -> Bool {
+	func onContext_canDelete(object: FetchedObject) -> Bool {
 		return true
 	}
-
+	
+	func onContext_willFinishLoading(pageLoadDescription: CLDPageLoadDescription, results: PreCompletionResults, isOperationCancelled: () -> Bool) throws {
+	}
+	
 }
