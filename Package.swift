@@ -19,11 +19,13 @@ let package = Package(
 	
 	
 	products: a{
-		$0.append(.library(name: "CollectionLoader", targets: ["CollectionLoader"]))
+		$0.append(.library(name: "CollectionLoader",   targets: ["CollectionLoader"]))
+		$0.append(.library(name: "BMOCoreDataLoaders", targets: ["BMOCoreDataLoaders"]))
 	},
 	
 	
-	dependencies: a{ r in
+	dependencies: a{
+		$0.append(.package(url: "https://github.com/happn-app/BMO.git", .branch("dev.bmo2")))
 	},
 	
 	
@@ -31,5 +33,10 @@ let package = Package(
 		$0.append(.target(name: "CollectionLoader", dependencies: a{ _ in
 		}))
 		$0.append(.testTarget(name: "CollectionLoaderTests", dependencies: ["CollectionLoader"]))
+		
+		$0.append(.target(name: "BMOCoreDataLoaders", dependencies: a{
+			$0.append(.product(name: "BMOCoreData", package: "BMO"))
+			$0.append(.target(name: "CollectionLoader"))
+		}))
 	}
 )

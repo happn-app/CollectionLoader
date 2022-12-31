@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BMO",
+        "repositoryURL": "https://github.com/happn-app/BMO.git",
+        "state": {
+          "branch": "dev.bmo2",
+          "revision": "d58e4b90817a324019361899e8ddbe7642092624",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
