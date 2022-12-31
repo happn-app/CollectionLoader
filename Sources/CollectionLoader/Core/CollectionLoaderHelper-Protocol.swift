@@ -17,11 +17,7 @@ import Foundation
 
 
 
-public protocol CollectionLoaderHelperProtocol {
-	
-	/**
-	 The type of the page info, which represent a given page. */
-	associatedtype PageInfo : PageInfoProtocol
+public protocol CollectionLoaderHelperProtocol : PageInfoRetrieverProtocol {
 	
 	/** The type of the objects in the collection. */
 	associatedtype FetchedObject : Hashable
@@ -72,14 +68,6 @@ public protocol CollectionLoaderHelperProtocol {
 	 Indeed, most of the work of the ``CollectionLoader`` happens inside these calls. */
 	func operationForLoading(pageInfo: PageInfo, delegate: any LoadingOperationDelegate<PreCompletionResults>) throws -> LoadingOperation
 	func results(from finishedLoadingOperation: LoadingOperation) -> Result<CompletionResults, Error>
-	
-	/* *************************
-	   MARK: Getting Pages Infos
-	   ************************* */
-	
-	func initialPageInfo() -> PageInfo
-	func nextPageInfo(    for completionResults: CompletionResults, from pageInfo: PageInfo) -> PageInfo?
-	func previousPageInfo(for completionResults: CompletionResults, from pageInfo: PageInfo) -> PageInfo?
 	
 	/* **********************
 	   MARK: Deleting Objects
