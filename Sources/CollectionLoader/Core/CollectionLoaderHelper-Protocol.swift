@@ -81,4 +81,10 @@ public protocol CollectionLoaderHelperProtocol {
 	func nextPageInfo(    for completionResults: CompletionResults, from pageInfo: PageInfo) -> PageInfo?
 	func previousPageInfo(for completionResults: CompletionResults, from pageInfo: PageInfo) -> PageInfo?
 	
+	/* **********************
+	   MARK: Deleting Objects
+	   ********************** */
+	
+	func onContext_delete(object: FetchedObject)
+	
 }

@@ -26,16 +26,16 @@ public protocol CollectionLoaderDelegate<CollectionLoaderHelper> : AnyObject {
 	typealias CompletionResults      = CollectionLoaderHelper.CompletionResults
 	typealias PreCompletionResults   = CollectionLoaderHelper.PreCompletionResults
 	/* Note: We would want to name this typealias PageLoadDescription but it’s not possible because CollectionLoader.PageLoadDescription fails to resolve (Swift tries to find the PageLoadDescription type inside the CollectionLoader *class* instead of the module). */
-	typealias CLDPageLoadDescription = PageLoadDescription<PageInfo, FetchedObject>
+	typealias CLDPageLoadDescription = PageLoadDescription<PageInfo>
 	
 	@MainActor
 	func willStartLoading(pageLoadDescription: CLDPageLoadDescription)
 	/**
 	 Called when the loading of the page info has finished.
 	 
-	 In a normal scenario, the ``willStartLoading(pageLoadDescription:)-3wlbd`` method is called first, then optionally ``onContext_willFinishLoading(pageLoadDescription:results:isOperationCancelled:)-7abf7``, and then this method.
+	 In a normal scenario, the ``willStartLoading(pageLoadDescription:)-8cxld`` method is called first, then optionally ``onContext_willFinishLoading(pageLoadDescription:results:cancellationCheck:)-95bs3``, and then this method.
 	 
-	 There is a scenario where ``willStartLoading(pageLoadDescription:)-3wlbd`` might not be called though:
+	 There is a scenario where ``willStartLoading(pageLoadDescription:)-8cxld`` might not be called though:
 	  if the helper fails retrieving the operation to load the given page info (``CollectionLoaderHelperProtocol/operationForLoading(pageInfo:delegate:)`` throws an error).
 	 In this case, and in this case only, this method will be called _synchronously_, before the ``CollectionLoader/load(pageLoadDescription:concurrentLoadBehavior:customOperationDependencies:)`` even returns.
 	 
@@ -58,10 +58,10 @@ public protocol CollectionLoaderDelegate<CollectionLoaderHelper> : AnyObject {
 	 
 	 Throwing here will fail the import part of the loading operation.
 	 
-	 If the `isOperationCancelled` block returns `true`, you should cancel your actions as soon as possible.
+	 If the `cancellationCheck` block throws, you should stop your actions as soon as possible.
 	 
 	 This might not be called if the operation fails before reaching this point (including cancellation). */
-	func onContext_willFinishLoading(pageLoadDescription: CLDPageLoadDescription, results: PreCompletionResults, isOperationCancelled: () -> Bool) throws
+	func onContext_willFinishLoading(pageLoadDescription: CLDPageLoadDescription, results: PreCompletionResults, cancellationCheck throwIfCancelled: () throws -> Void) throws
 	
 }
 
@@ -80,7 +80,7 @@ public extension CollectionLoaderDelegate {
 		return true
 	}
 	
-	func onContext_willFinishLoading(pageLoadDescription: CLDPageLoadDescription, results: PreCompletionResults, isOperationCancelled: () -> Bool) throws {
+	func onContext_willFinishLoading(pageLoadDescription: CLDPageLoadDescription, results: PreCompletionResults, cancellationCheck throwIfCancelled: () throws -> Void) throws {
 	}
 	
 }

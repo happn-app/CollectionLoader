@@ -17,14 +17,14 @@ import Foundation
 
 
 
-public struct PageLoadDescription<PageInfo : PageInfoProtocol, FetchedObject : Hashable> {
+public struct PageLoadDescription<PageInfo : PageInfoProtocol> {
 	
 	public enum Reason {
 		
 		case initialPage
 		case nextPage
 		case previousPage
-		case sync(range: Range<Int>, initialObjects: [FetchedObject])
+		case sync(range: ClosedRange<Int>)
 		
 	}
 	

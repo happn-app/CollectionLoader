@@ -21,7 +21,7 @@ import Foundation
 public final class CollectionLoader<Helper : CollectionLoaderHelperProtocol> {
 	
 	public typealias PageInfo = Helper.PageInfo
-	public typealias CLPageLoadDescription = PageLoadDescription<PageInfo, Helper.FetchedObject>
+	public typealias CLPageLoadDescription = PageLoadDescription<PageInfo>
 	
 	public let helper: Helper
 	/**
@@ -49,36 +49,35 @@ public final class CollectionLoader<Helper : CollectionLoaderHelperProtocol> {
 	 Only one page load at a time is allowed.
 	 All of the loading operations are launched in a queue with a maximum concurrent operation count set to 1. */
 	public func load(pageLoadDescription: CLPageLoadDescription, concurrentLoadBehavior: ConcurrentLoadBehavior = .queue, customOperationDependencies: [Operation] = []) {
-		/* We capture the delegate so we always get the same one for all the callbacks. */
+		/* We capture the delegate so we always get the same one for all the callbacks.
+		 * We do not capture the handler because we do not need it here (only used in the loading delegate). */
 		let delegate = delegate
 		
 		let operation: Helper.LoadingOperation
-		let loadingDelegate = pageLoadDescription.loadingReason.operationLoadingDelegate(for: self, pageLoadDescription: pageLoadDescription, delegate: delegate)
+		let loadingDelegate = pageLoadDescription.loadingReason.operationLoadingDelegate(with: helper, pageLoadDescription: pageLoadDescription, delegate: delegate)
 		do    {operation = try helper.operationForLoading(pageInfo: pageLoadDescription.loadedPage, delegate: loadingDelegate)}
-		catch {callDidFinishLoading(on: delegate, pageLoadDescription: pageLoadDescription, results: .failure(error)); return}
+		catch {Self.callDidFinishLoading(on: delegate, pageLoadDescription: pageLoadDescription, results: .failure(error)); return}
 		
 		/* We capture the delegate to always get the same one for all the callbacks. */
 		let prestart = BlockOperation{ [weak self, delegate] in
 			/* On main queue (and thus on main actor/thread). */
-			guard let self else {return}
-			
 			/* Let’s call the delegate first. */
-			self.callWillStartLoading(on: delegate, pageLoadDescription: pageLoadDescription)
+			Self.callWillStartLoading(on: delegate, pageLoadDescription: pageLoadDescription)
 			
 			/* Then we remove ourselves from the pending operations and put ourselves as the current operation instead.
 			 * By construction, our operation is the first one of the pending operations. */
+			guard let self else {return}
 			assert(self.currentOperation == nil)
 			self.currentOperation = self.pendingOperations.removeFirst() /* Crashes if pendingOperations is empty, which is what we want. */
 		}
 		/* We capture the delegate to always get the same one for all the callbacks. */
-		let completion = BlockOperation{ [weak self, delegate] in
+		let completion = BlockOperation{ [weak self, delegate, helper] in
 			/* On main queue (and thus on main actor/thread). */
-			guard let self else {return}
-			
 			/* Let’s call the delegate first. */
-			self.callDidFinishLoading(on: delegate, pageLoadDescription: pageLoadDescription, results: self.helper.results(from: operation))
+			Self.callDidFinishLoading(on: delegate, pageLoadDescription: pageLoadDescription, results: helper.results(from: operation))
 			
 			/* Then we remove ourselves as the current operation. */
+			guard let self else {return}
 			self.currentOperation = nil
 		}
 		
@@ -138,35 +137,29 @@ public final class CollectionLoader<Helper : CollectionLoaderHelperProtocol> {
 		
 	}
 	
-	/* Maybe some day in a future version of Swift these will not be required. */
-	private func callWillStartLoading(on delegate: (any CollectionLoaderDelegate<Helper>)?, pageLoadDescription: CLPageLoadDescription) {
+}
+
+
+/* Extension to “unerase” the delegate.
+ * Maybe some day in a future version of Swift these will not be required. */
+private extension CollectionLoader {
+	
+	private static func callWillStartLoading(on delegate: (any CollectionLoaderDelegate<Helper>)?, pageLoadDescription: CLPageLoadDescription) {
 		if let delegate {
 			callWillStartLoading(on: delegate, pageLoadDescription: pageLoadDescription)
 		}
 	}
-	private func callWillStartLoading<Delegate : CollectionLoaderDelegate>(on delegate: Delegate, pageLoadDescription: CLPageLoadDescription)
+	private static func callWillStartLoading<Delegate : CollectionLoaderDelegate>(on delegate: Delegate, pageLoadDescription: CLPageLoadDescription)
 	where Delegate.CollectionLoaderHelper == Helper {
 		delegate.willStartLoading(pageLoadDescription: pageLoadDescription)
 	}
 	
-	/* This one is internal because it is used in the PageLoadDescription.Reason+Utils file.
-	 * It is also nonisolated because it is called on the db context, which might not be the main thread. */
-	internal nonisolated func callWillFinishLoading(on delegate: (any CollectionLoaderDelegate<Helper>)?, pageLoadDescription: CLPageLoadDescription, results: Helper.PreCompletionResults, isOperationCancelled: () -> Bool) throws {
-		if let delegate {
-			try callWillFinishLoading(on: delegate, pageLoadDescription: pageLoadDescription, results: results, isOperationCancelled: isOperationCancelled)
-		}
-	}
-	private nonisolated func callWillFinishLoading<Delegate : CollectionLoaderDelegate>(on delegate: Delegate, pageLoadDescription: CLPageLoadDescription, results: Helper.PreCompletionResults, isOperationCancelled: () -> Bool) throws
-	where Delegate.CollectionLoaderHelper == Helper {
-		try delegate.onContext_willFinishLoading(pageLoadDescription: pageLoadDescription, results: results, isOperationCancelled: isOperationCancelled)
-	}
-	
-	private func callDidFinishLoading(on delegate: (any CollectionLoaderDelegate<Helper>)?, pageLoadDescription: CLPageLoadDescription, results: Result<Helper.CompletionResults, Error>) {
+	private static func callDidFinishLoading(on delegate: (any CollectionLoaderDelegate<Helper>)?, pageLoadDescription: CLPageLoadDescription, results: Result<Helper.CompletionResults, Error>) {
 		if let delegate {
 			callDidFinishLoading(on: delegate, pageLoadDescription: pageLoadDescription, results: results)
 		}
 	}
-	private func callDidFinishLoading<Delegate : CollectionLoaderDelegate>(on delegate: Delegate, pageLoadDescription: CLPageLoadDescription, results: Result<Helper.CompletionResults, Error>)
+	private static func callDidFinishLoading<Delegate : CollectionLoaderDelegate>(on delegate: Delegate, pageLoadDescription: CLPageLoadDescription, results: Result<Helper.CompletionResults, Error>)
 	where Delegate.CollectionLoaderHelper == Helper {
 		delegate.didFinishLoading(pageLoadDescription: pageLoadDescription, results: results)
 	}

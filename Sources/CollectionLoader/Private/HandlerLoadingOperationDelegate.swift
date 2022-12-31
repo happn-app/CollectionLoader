@@ -19,26 +19,30 @@ import Foundation
 
 final class HandlerLoadingOperationDelegate<PreCompletionResults> : LoadingOperationDelegate {
 	
-	let willStart: (() -> Bool) -> Bool
-	let willImport: (() -> Bool) throws -> Bool
-	let didFinishImport: (PreCompletionResults, () -> Bool) throws -> Void
+	let willStart: (() throws -> Void) throws -> Void
+	let willImport: (() throws -> Void) throws -> Bool
+	let didFinishImport: (PreCompletionResults, () throws -> Void) throws -> Void
 	
-	init(willStart: @escaping (() -> Bool) -> Bool, willImport: @escaping (() -> Bool) throws -> Bool, didFinishImport: @escaping (PreCompletionResults, () -> Bool) throws -> Void) {
+	init(
+		willStart: @escaping (() throws -> Void) throws -> Void = { _ in },
+		willImport: @escaping (() throws -> Void) throws -> Bool = { _ in true },
+		didFinishImport: @escaping (PreCompletionResults, () throws -> Void) throws -> Void = { _, _ in }
+	) {
 		self.willStart = willStart
 		self.willImport = willImport
 		self.didFinishImport = didFinishImport
 	}
 	
-	func onContext_remoteOperationWillStart(isOperationCancelled: () -> Bool) -> Bool {
-		return willStart(isOperationCancelled)
+	func onContext_remoteOperationWillStart(cancellationCheck throwIfCancelled: () throws -> Void) throws {
+		try willStart(throwIfCancelled)
 	}
 	
-	func onContext_operationWillImportResults(isOperationCancelled: () -> Bool) throws -> Bool {
-		return try willImport(isOperationCancelled)
+	func onContext_operationWillImportResults(cancellationCheck throwIfCancelled: () throws -> Void) throws -> Bool {
+		return try willImport(throwIfCancelled)
 	}
 	
-	func onContext_operationDidFinishImport(results: PreCompletionResults, isOperationCancelled: () -> Bool) throws {
-		try didFinishImport(results, isOperationCancelled)
+	func onContext_operationDidFinishImport(results: PreCompletionResults, cancellationCheck throwIfCancelled: () throws -> Void) throws {
+		try didFinishImport(results, throwIfCancelled)
 	}
 	
 }
